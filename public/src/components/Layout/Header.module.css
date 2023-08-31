@@ -1,0 +1,17 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1rem 2rem;
+  color: white;
+}
+
+.header h2 {
+  font-weight: 800;
+}
+
+.header p {
+  font-size: 1rem;
+  font-weight: 400;
+}
