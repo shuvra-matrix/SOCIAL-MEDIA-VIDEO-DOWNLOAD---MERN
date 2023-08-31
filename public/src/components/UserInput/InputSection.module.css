@@ -6,15 +6,63 @@
 
 .input {
   width: 100%;
-  padding: 1rem;
+  padding: 1rem 105px 1rem 1rem;
+  border: 1px solid #9c009b;
   border-radius: 6px;
+  background-color: transparent;
+  color: white;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.input::placeholder {
+  color: white;
 }
 
 .btn {
-  padding: 1rem 1.5rem;
-  font-size: 1rem;
+  height: 80%;
+  font-size: 0.8rem;
   position: absolute;
-  right: 0px;
+  padding: 0 1rem;
   border: 0px;
   border-radius: 5px;
+  background-color: #9c009b;
+  color: white;
+  right: 5px;
+  top: 5px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #830083;
+}
+
+@media (max-width: 1024px) {
+  .input-div {
+    width: 60%;
+  }
+}
+
+@media (max-width: 550px) {
+  .input-div {
+    width: 70%;
+  }
+}
+
+@media (max-width: 425px) {
+  .input-div {
+    width: 80%;
+  }
+
+  .input {
+    padding: 0.8rem 100px 0.8rem 1rem;
+  }
+  .btn {
+    height: 80%;
+    padding: 0 0.8rem;
+    right: 5px;
+    top: 4px;
+  }
 }
