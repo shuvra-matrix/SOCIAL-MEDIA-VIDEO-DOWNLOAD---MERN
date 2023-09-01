@@ -1,7 +1,7 @@
 .result-div {
   width: 100%;
   border-radius: 5px;
-  border: 1px solid #830083;
+  border: 1px solid #c50052;
   margin-top: 1rem;
   padding: 1rem;
   text-align: center;
@@ -9,7 +9,7 @@
 }
 
 .thumb-div {
-  border: 1px solid #830083;
+  border: 1px solid #c50052;
   width: 150px;
   height: 150px;
   display: flex;
@@ -28,13 +28,13 @@
 
 .result-div h3 {
   margin: 1rem 0rem;
-  color: rgb(219, 219, 219);
+  color: rgb(211, 211, 211);
 }
 
 .download-section table {
   width: 100%;
-  color: white;
-  border: 1px solid #830083;
+  color: rgb(218, 218, 218);
+  border: 1px solid #c50052;
   border-radius: 5px;
 }
 
@@ -48,13 +48,58 @@
 
 .download-section a {
   padding: 0.5rem 1rem;
-  background-color: #830083;
+  background-color: #c50052;
   text-decoration: none;
-  color: white;
+  color: rgb(234, 234, 234);
   border-radius: 5px;
   cursor: pointer;
 }
 
 .download-section a:hover {
-  background-color: #740274;
+  background-color: #a10144;
+}
+
+@media (max-width: 425px) {
+  .result-div h3 {
+    font-size: 0.9rem;
+  }
+
+  .download-section th {
+    padding-top: 0.8rem;
+    font-size: 0.8rem;
+  }
+
+  .download-section td {
+    padding: 1rem;
+    font-size: 0.8rem;
+  }
+  .download-section a {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 375px) {
+  .download-section th {
+    padding-top: 0.8rem;
+  }
+
+  .download-section td {
+    padding: 0.8rem;
+  }
+  .download-section a {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.7rem;
+  }
+
+  .result-div {
+    padding: 1rem 0.8rem;
+    margin-top: 2rem;
+  }
+}
+
+@media (max-width: 299px) {
+  .result-div {
+    overflow: auto;
+  }
 }
