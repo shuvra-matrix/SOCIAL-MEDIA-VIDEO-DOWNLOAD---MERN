@@ -9,15 +9,20 @@ const UserInput = (props) => {
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoader, setLoader] = useState(false);
   const [isServerOk, setServerOk] = useState(true);
+
   const [urlResult, setUrlResult] = useState({
     thumb: [],
     urls: [],
     title: [],
   });
 
-  const userInputHandler = async (url) => {
+  const userInputHandler = async (url, type) => {
     setLoader(true);
-    const urls = "http://localhost:3030/api/v1/yt";
+    let urls;
+    if (type === "yt") {
+      urls = "http://localhost:3030/api/v1/yt";
+    }
+
     const options = {
       method: "POST",
       headers: {
@@ -30,6 +35,8 @@ const UserInput = (props) => {
     try {
       const response = await fetch(urls, options);
       const result = await response.json();
+      console.log(result);
+      console.log(type);
       setLoader(false);
       if (result.status === "fail") {
         setServerOk(false);
@@ -41,6 +48,7 @@ const UserInput = (props) => {
         setUrlResult(result);
       }
     } catch (err) {
+      console.log(err);
       setLoader(false);
       setServerOk(false);
       setErrorMessage("An unexpected error occurred. Please try again later.");

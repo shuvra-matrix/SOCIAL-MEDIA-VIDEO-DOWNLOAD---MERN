@@ -10,7 +10,13 @@ const InputSection = (props) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    props.userUrls(userInput);
+    let type;
+
+    if (userInput.includes("youtu")) {
+      type = "yt";
+    }
+    props.userUrls(userInput, type);
+
     setUserInput("");
   };
 

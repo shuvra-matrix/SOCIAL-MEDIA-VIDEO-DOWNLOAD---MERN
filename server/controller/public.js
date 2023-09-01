@@ -1,6 +1,31 @@
 const axios = require("axios");
 require("dotenv").config();
 
+async function getVideoSize(url) {
+  try {
+    const response = await axios.get(url, { responseType: "stream" });
+
+    if (response.status === 200) {
+      let sizeInBytes = 0;
+
+      response.data.on("data", (chunk) => {
+        sizeInBytes += chunk.length;
+      });
+
+      response.data.on("end", () => {
+        const sizeInKb = sizeInBytes / 1024; // Convert to kilobytes
+        const sizeInMb = sizeInKb / 1024; // Convert to megabytes
+        console.log(sizeInMb);
+        return sizeInMb;
+      });
+    } else {
+      console.log(`HTTP request failed with status code: ${response.status}`);
+    }
+  } catch (error) {
+    console.error("An error occurred:", error.message);
+  }
+}
+
 exports.startApi = (req, res, next) => {
   res.status(200).json({ message: "Welcome To Vidown Api" });
 };
@@ -24,11 +49,24 @@ exports.postYoutube = async (req, res, next) => {
   try {
     axios.request(options).then((response) => {
       const result = response.data;
-      console.log(result);
+      // console.log(result);
       if (result.thumbnail) {
+        let dataList = result.formats.map((obj) => {
+          return {
+            url: obj.url,
+            quality: obj.qualityLabel,
+            size: (
+              (obj.bitrate * (+obj.approxDurationMs / 1000)) /
+              (8 * 1024 * 1024)
+            ).toFixed(1),
+          };
+        });
+
+        console.log(dataList);
+
         res.status(200).json({
-          thumb: result["thumbnail"],
-          urls: result["formats"],
+          thumb: result["thumbnail"][2].url,
+          urls: dataList,
           title: result["title"],
         });
       } else {

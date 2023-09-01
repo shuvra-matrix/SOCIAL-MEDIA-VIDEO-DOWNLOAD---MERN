@@ -2,7 +2,7 @@ import style from "./ResultSection.module.css";
 
 const ResultSection = (props) => {
   const title = props.result.title;
-  const thumb = props.result.thumb[2].url;
+  const thumb = props.result.thumb;
   console.log(thumb);
   return (
     <div className={style["result-div"]}>
@@ -21,13 +21,10 @@ const ResultSection = (props) => {
           </thead>
           <tbody>
             {props.result.urls.map((url) => (
-              <tr key={url.itag}>
-                <td>{url.qualityLabel}</td>
+              <tr key={url.size}>
+                <td>{url.quality}</td>
                 <td>
-                  {(
-                    (url.bitrate * (+url.approxDurationMs / 1000)) /
-                    (8 * 1024 * 1024)
-                  ).toFixed(1)}
+                  {url.size}
                   MB
                 </td>
                 <td>
