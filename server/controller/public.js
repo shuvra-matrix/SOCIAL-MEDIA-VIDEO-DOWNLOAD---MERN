@@ -38,6 +38,9 @@ exports.postYoutube = async (req, res, next) => {
       }
     });
   } catch (error) {
-    console.error(error);
+    console.log(error);
+    res
+      .status(500)
+      .json({ status: "fail", error: "Invalid request", code: 500 });
   }
 };

@@ -41,7 +41,9 @@ const UserInput = (props) => {
         setUrlResult(result);
       }
     } catch (err) {
-      console.log(err);
+      setLoader(false);
+      setServerOk(false);
+      setErrorMessage("An unexpected error occurred. Please try again later.");
     }
   };
 
