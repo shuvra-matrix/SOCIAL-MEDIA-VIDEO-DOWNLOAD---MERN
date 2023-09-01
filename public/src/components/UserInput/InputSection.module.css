@@ -1,16 +1,12 @@
-.input-div {
-  width: 40%;
-  margin: 5rem auto;
-  position: relative;
-}
-
 .input {
   width: 100%;
   padding: 1rem 105px 1rem 1rem;
-  border: 1px solid #c50052;
+  border: 1.2px solid #c50052;
   border-radius: 6px;
   background-color: transparent;
-  color: white;
+  color: rgb(224, 224, 224);
+  box-shadow: 1px 1px 10px 10px #00000038;
+  box-shadow: 1px 1px 20px 10px #00000038 inset;
 }
 
 .input:focus {
@@ -18,7 +14,7 @@
 }
 
 .input::placeholder {
-  color: white;
+  color: rgb(216, 216, 216);
 }
 
 .btn {
@@ -27,11 +23,12 @@
   padding: 0.75rem 1rem;
   border: 0px;
   border-radius: 5px;
-  background-color: #c50052;
-  color: white;
+  background-color: #c50052ce;
+  color: rgb(235, 235, 235);
   right: 5px;
   top: 5px;
   cursor: pointer;
+  box-shadow: 1px 1px 10px 10px #00000038;
 }
 
 .btn:hover {

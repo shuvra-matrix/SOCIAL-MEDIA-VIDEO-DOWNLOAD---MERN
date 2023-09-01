@@ -6,6 +6,7 @@
   padding: 1rem;
   text-align: center;
   background-color: rgba(0, 0, 0, 0.555);
+  box-shadow: 1px 1px 10px 10px #00000038;
 }
 
 .thumb-div {
