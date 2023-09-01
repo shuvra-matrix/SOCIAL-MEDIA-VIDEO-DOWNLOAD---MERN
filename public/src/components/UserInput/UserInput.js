@@ -3,9 +3,12 @@ import InputSection from "./InputSection";
 import ResultSection from "../ResultSection/ResultSection";
 import Loader from "../UI/Loader";
 import { useState } from "react";
+import Error from "../UI/Error";
 
 const UserInput = (props) => {
+  const [errorMessage, setErrorMessage] = useState("");
   const [isLoader, setLoader] = useState(false);
+  const [isServerOk, setServerOk] = useState(true);
   const [urlResult, setUrlResult] = useState({
     thumb: [],
     urls: [],
@@ -28,7 +31,15 @@ const UserInput = (props) => {
       const response = await fetch(urls, options);
       const result = await response.json();
       setLoader(false);
-      setUrlResult(result);
+      if (result.status === "fail") {
+        setServerOk(false);
+        setErrorMessage(
+          "An unexpected error occurred. Please try again later."
+        );
+      } else {
+        setServerOk(true);
+        setUrlResult(result);
+      }
     } catch (err) {
       console.log(err);
     }
@@ -38,7 +49,10 @@ const UserInput = (props) => {
     <div className={style["input-div"]}>
       <InputSection userUrls={userInputHandler} />
       {isLoader && <Loader />}
-      {urlResult.urls.length > 0 && <ResultSection result={urlResult} />}
+      {urlResult.urls.length > 0 && isServerOk && (
+        <ResultSection result={urlResult} />
+      )}
+      {!isServerOk && <Error error={errorMessage} />}
     </div>
   );
 };
