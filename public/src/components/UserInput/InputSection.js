@@ -10,7 +10,7 @@ const InputSection = (props) => {
         placeholder="Past Link Here"
       ></input>
       <button className={style["btn"]} type="submit">
-        Download
+        Search
       </button>
     </form>
   );

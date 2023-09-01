@@ -1,7 +1,7 @@
 .result-div {
   width: 100%;
   border-radius: 5px;
-  border: 1px solid #c50052;
+  border: 1px solid #c50052cc;
   margin-top: 1rem;
   padding: 1rem;
   text-align: center;
@@ -10,7 +10,7 @@
 }
 
 .thumb-div {
-  border: 1px solid #c50052;
+  border: 1px solid #c50052ce;
   width: 150px;
   height: 150px;
   display: flex;
@@ -29,13 +29,13 @@
 
 .result-div h3 {
   margin: 1rem 0rem;
-  color: rgb(211, 211, 211);
+  color: rgb(192, 192, 192);
 }
 
 .download-section table {
   width: 100%;
-  color: rgb(218, 218, 218);
-  border: 1px solid #c50052;
+  color: rgb(201, 201, 201);
+  border: 1px solid #c50052dc;
   border-radius: 5px;
 }
 
@@ -49,9 +49,9 @@
 
 .download-section a {
   padding: 0.5rem 1rem;
-  background-color: #c50052;
+  background-color: #c50052d7;
   text-decoration: none;
-  color: rgb(234, 234, 234);
+  color: rgb(226, 226, 226);
   border-radius: 5px;
   cursor: pointer;
 }
