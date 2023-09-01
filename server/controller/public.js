@@ -103,8 +103,6 @@ exports.postTwitter = async (req, res, next) => {
             }
           });
       }
-
-      console.log(dataList);
     });
   } catch (error) {
     console.log(error);
