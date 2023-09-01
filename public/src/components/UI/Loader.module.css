@@ -1,11 +1,10 @@
 .loder-div {
   width: 100%;
-  padding: 1rem 105px 1rem 1rem;
+  padding: 5px;
   border: 1.2px solid #c50052b0;
   border-radius: 6px;
   color: rgb(224, 224, 224);
   box-shadow: 1px 1px 10px 10px #00000038;
-  box-shadow: 1px 1px 20px 10px #00000038 inset;
   margin-top: 1rem;
   display: flex;
   align-items: center;
@@ -13,13 +12,14 @@
 
 .loader {
   width: 0;
-  height: 4.8px;
+  height: 10px;
   display: inline-block;
   position: relative;
-  background: #dd0155ef;
+  background: #dd0155c9;
   box-shadow: 1px 1px 20px 10px rgba(0, 0, 0, 0.295);
   box-sizing: border-box;
   animation: animFw 8s linear infinite;
+  border-radius: 5px;
 }
 .loader::after,
 .loader::before {
