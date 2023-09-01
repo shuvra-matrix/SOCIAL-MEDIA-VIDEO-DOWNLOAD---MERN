@@ -1,13 +1,15 @@
 import style from "./ResultSection.module.css";
-import BG from "../../assets/bg.jpg";
 
 const ResultSection = (props) => {
+  const title = props.result.title;
+  const thumb = props.result.thumb[2].url;
+  console.log(thumb);
   return (
     <div className={style["result-div"]}>
       <div className={style["thumb-div"]}>
-        <img src={BG} alt="thumb"></img>
+        <img src={thumb} alt="thumb"></img>
       </div>
-      <h3> this jdkajdai adkadasas </h3>
+      <h3> {title} </h3>
       <div className={style["download-section"]}>
         <table>
           <thead>
@@ -18,15 +20,23 @@ const ResultSection = (props) => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1080p</td>
-              <td>20MB</td>
-              <td>
-                <a href="dadas" target="_blank">
-                  Download
-                </a>
-              </td>
-            </tr>
+            {props.result.urls.map((url) => (
+              <tr key={url.itag}>
+                <td>{url.qualityLabel}</td>
+                <td>
+                  {(
+                    (url.bitrate * (+url.approxDurationMs / 1000)) /
+                    (8 * 1024 * 1024)
+                  ).toFixed(1)}
+                  MB
+                </td>
+                <td>
+                  <a href={url.url} target="_blank" rel="noreferrer">
+                    Download
+                  </a>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

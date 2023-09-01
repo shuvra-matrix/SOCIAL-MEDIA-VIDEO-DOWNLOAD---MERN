@@ -10,7 +10,7 @@ const InputSection = (props) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log(userInput);
+    props.userUrls(userInput);
     setUserInput("");
   };
 
@@ -22,7 +22,7 @@ const InputSection = (props) => {
         name="search"
         placeholder="Past Link Here"
         onChange={userInputHnadler}
-        value={userInput}
+        value={userInput || ""}
       ></input>
       <button className={style["btn"]} type="submit">
         Search
