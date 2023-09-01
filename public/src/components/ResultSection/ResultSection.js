@@ -10,20 +10,24 @@ const ResultSection = (props) => {
       <h3> this jdkajdai adkadasas </h3>
       <div className={style["download-section"]}>
         <table>
-          <tr>
-            <th>Quality</th>
-            <th>Size</th>
-            <th>Download</th>
-          </tr>
-          <tr>
-            <td>1080p</td>
-            <td>20MB</td>
-            <td>
-              <a href="dadas" target="_blank">
-                Download
-              </a>
-            </td>
-          </tr>
+          <thead>
+            <tr>
+              <th>Quality</th>
+              <th>Size</th>
+              <th>Download</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1080p</td>
+              <td>20MB</td>
+              <td>
+                <a href="dadas" target="_blank">
+                  Download
+                </a>
+              </td>
+            </tr>
+          </tbody>
         </table>
       </div>
     </div>
