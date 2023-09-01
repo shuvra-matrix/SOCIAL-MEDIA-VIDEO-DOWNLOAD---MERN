@@ -15,6 +15,9 @@ const InputSection = (props) => {
     if (userInput.includes("youtu")) {
       type = "yt";
     }
+    if (userInput.includes("twitter.com")) {
+      type = "tw";
+    }
     props.userUrls(userInput, type);
 
     setUserInput("");

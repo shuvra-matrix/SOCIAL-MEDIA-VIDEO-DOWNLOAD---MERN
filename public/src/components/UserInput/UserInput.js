@@ -22,6 +22,9 @@ const UserInput = (props) => {
     if (type === "yt") {
       urls = "http://localhost:3030/api/v1/yt";
     }
+    if (type === "tw") {
+      urls = "http://localhost:3030/api/v1/tw";
+    }
 
     const options = {
       method: "POST",

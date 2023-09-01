@@ -1,7 +1,7 @@
 import style from "./ResultSection.module.css";
 
 const ResultSection = (props) => {
-  const title = props.result.title;
+  const title = props.result.title.slice(0, 60) + " ....";
   const thumb = props.result.thumb;
   console.log(thumb);
   return (
