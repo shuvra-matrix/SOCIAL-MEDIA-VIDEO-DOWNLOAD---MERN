@@ -1,0 +1,60 @@
+.result-div {
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #830083;
+  margin-top: 1rem;
+  padding: 1rem;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.555);
+}
+
+.thumb-div {
+  border: 1px solid #830083;
+  width: 150px;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  border-radius: 5px;
+}
+
+.thumb-div img {
+  width: 140px;
+  height: 140px;
+  border-radius: 5px;
+  opacity: 0.9;
+}
+
+.result-div h3 {
+  margin: 1rem 0rem;
+  color: rgb(219, 219, 219);
+}
+
+.download-section table {
+  width: 100%;
+  color: white;
+  border: 1px solid #830083;
+  border-radius: 5px;
+}
+
+.download-section th {
+  padding-top: 1rem;
+}
+
+.download-section td {
+  padding: 1.2rem;
+}
+
+.download-section a {
+  padding: 0.5rem 1rem;
+  background-color: #830083;
+  text-decoration: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.download-section a:hover {
+  background-color: #740274;
+}

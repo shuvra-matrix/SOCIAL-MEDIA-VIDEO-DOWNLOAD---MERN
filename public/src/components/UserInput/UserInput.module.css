@@ -1,0 +1,23 @@
+.input-div {
+  width: 40%;
+  margin: 5rem auto;
+  position: relative;
+}
+
+@media (max-width: 1024px) {
+  .input-div {
+    width: 60%;
+  }
+}
+
+@media (max-width: 550px) {
+  .input-div {
+    width: 70%;
+  }
+}
+
+@media (max-width: 425px) {
+  .input-div {
+    width: 80%;
+  }
+}
