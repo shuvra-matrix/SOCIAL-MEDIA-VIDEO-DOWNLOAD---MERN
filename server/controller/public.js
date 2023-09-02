@@ -1,6 +1,4 @@
 const axios = require("axios");
-const { response } = require("express");
-const { default: Error } = require("../../public/src/components/UI/Error");
 require("dotenv").config();
 
 function getFileSizeFromURL(url) {
