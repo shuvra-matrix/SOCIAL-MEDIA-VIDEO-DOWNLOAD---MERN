@@ -4,8 +4,16 @@ import React from "react";
 const Header = (props) => {
   return (
     <header className={styles["header"]}>
-      <h2>Vidown</h2>
-      <p>About US</p>
+      <a href="/">
+        <h2>Vidown</h2>
+      </a>
+      <a
+        href="https://github.com/shuvra-matrix/SOCIAL-MEDIA-VIDEO-DOWNLOAD---MERN"
+        target="_blank"
+        rel="noreferrer"
+      >
+        <h4>About Us</h4>
+      </a>
     </header>
   );
 };

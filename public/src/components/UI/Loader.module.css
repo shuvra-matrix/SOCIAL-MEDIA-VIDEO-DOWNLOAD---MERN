@@ -71,3 +71,15 @@
     opacity: 0.7;
   }
 }
+
+@media (max-width: 530px) {
+  .loder-div {
+    background-color: #1f1f1f;
+    border: none;
+    box-shadow: 1px 1px 10px 10px #00000088;
+  }
+
+  .loader {
+    background: #ee0c31c9;
+  }
+}

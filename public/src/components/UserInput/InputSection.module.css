@@ -35,6 +35,34 @@
   background-color: #91003c;
 }
 
+@media (max-width: 530px) {
+  .input {
+    border: 1.2px solid #000000;
+    background-color: #191919;
+    color: rgb(224, 224, 224);
+    box-shadow: 1px 1px 10px 10px #00000038;
+    box-shadow: 1px 1px 5px 4px #00000061 inset;
+  }
+
+  .input:focus {
+    outline: none;
+  }
+
+  .input::placeholder {
+    color: rgb(182, 182, 182);
+  }
+
+  .btn {
+    background-color: #ca5d15;
+    color: rgb(240, 240, 240);
+    box-shadow: 1px 1px 10px 10px #00000038;
+  }
+
+  .btn:hover {
+    background-color: #b64e08;
+  }
+}
+
 @media (max-width: 425px) {
   .input {
     padding: 0.8rem 100px 0.8rem 1rem;

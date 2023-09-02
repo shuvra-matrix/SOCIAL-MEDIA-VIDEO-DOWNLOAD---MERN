@@ -2,3 +2,9 @@
   background-color: #000000ad;
   height: 100vh;
 }
+
+@media (max-width: 530px) {
+  .main-div {
+    background-color: none;
+  }
+}

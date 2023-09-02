@@ -4,16 +4,27 @@
   justify-content: space-between;
   width: 100%;
   padding: 1rem 2rem;
+}
+
+.header a {
+  text-decoration: none;
   color: white;
+  cursor: pointer;
 }
 
 .header h2 {
   font-weight: 800;
 }
 
-.header p {
+.header h4 {
   font-size: 1rem;
-  font-weight: 400;
+  font-weight: 700;
+}
+
+@media (max-width: 530px) {
+  .header a {
+    color: #cecece;
+  }
 }
 
 @media (max-width: 430px) {

@@ -27,9 +27,17 @@ body {
     hsl(55deg 100% 50%) 100%
   );
   height: 100vh;
+  text-shadow: 1px 1px 1px black;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+@media (max-width: 530px) {
+  body {
+    background-color: #111111;
+    background-image: none;
+  }
 }

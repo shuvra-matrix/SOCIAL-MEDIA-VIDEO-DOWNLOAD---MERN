@@ -60,6 +60,40 @@
   background-color: #a10144;
 }
 
+@media (max-width: 530px) {
+  .result-div {
+    border: 1px solid #000000cc;
+    background-color: #1f1f1f;
+    box-shadow: 1px 1px 10px 10px #00000056;
+    box-shadow: 1px 1px 20px 15px #00000070 inset;
+  }
+
+  .thumb-div {
+    border: 1px solid #0c0c0c94;
+    box-shadow: 1px 1px 10px 10px #0000004f;
+  }
+
+  .result-div h3 {
+    color: rgb(192, 192, 192);
+  }
+
+  .download-section table {
+    background-color: #050505;
+    color: rgb(201, 201, 201);
+    border: none;
+    box-shadow: 1px 1px 10px 10px #00000038;
+  }
+
+  .download-section a {
+    background-color: #5500c5d7;
+    color: rgb(226, 226, 226);
+  }
+
+  .download-section a:hover {
+    background-color: #5500c5a6;
+  }
+}
+
 @media (max-width: 425px) {
   .result-div h3 {
     font-size: 0.9rem;
@@ -98,7 +132,7 @@
     padding: 0.8rem;
   }
   .download-section a {
-    padding: 0.3rem 0.6rem;
+    padding: 0.4rem 0.6rem;
     font-size: 0.7rem;
   }
 
