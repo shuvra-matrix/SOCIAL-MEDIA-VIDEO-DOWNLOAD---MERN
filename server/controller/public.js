@@ -35,7 +35,7 @@ exports.postYoutube = (req, res, next) => {
   videoId = videoId.replace("https://www.youtube.com/shorts/", "");
   videoId = videoId.replace("https://youtu.be/", "");
   videoId = videoId.replace("https://youtube.com/shorts/", "");
-  videoId = videoId.replace("https://youtube.com/live/", "");
+  videoId = videoId.replace("https://www.youtube.com/live/", "");
   videoId = videoId.slice(0, 11);
   console.log(videoId);
   const options = {
