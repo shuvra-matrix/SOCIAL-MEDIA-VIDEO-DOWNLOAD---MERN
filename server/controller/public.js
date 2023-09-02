@@ -121,7 +121,7 @@ exports.postTwitter = async (req, res, next) => {
           })
           .then((result) => {
             console.log(dataList);
-            if (dataList.length > 2) {
+            if (dataList.length === dataUrl.length) {
               res.status(200).json({
                 thumb: data[0]["pictureUrl"],
                 urls: dataList,
