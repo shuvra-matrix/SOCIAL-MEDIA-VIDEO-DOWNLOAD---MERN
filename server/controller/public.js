@@ -1,18 +1,45 @@
 const axios = require("axios");
 const { response } = require("express");
+const { default: Error } = require("../../public/src/components/UI/Error");
 require("dotenv").config();
-const ufs = require("url-file-size");
+
+function getFileSizeFromURL(url) {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const response = await axios.get(url, { responseType: "stream" });
+
+      let fileSize = 0;
+
+      response.data.on("data", (chunk) => {
+        fileSize += chunk.length;
+      });
+
+      response.data.on("end", () => {
+        resolve(fileSize);
+      });
+
+      response.data.on("error", (error) => {
+        reject(error);
+      });
+    } catch (error) {
+      reject(error);
+    }
+  });
+}
 
 exports.startApi = (req, res, next) => {
   res.status(200).json({ message: "Welcome To Vidown Api" });
 };
 
-exports.postYoutube = async (req, res, next) => {
+exports.postYoutube = (req, res, next) => {
   const ytUrl = req.body.urls;
   let videoId = ytUrl.replace("https://www.youtube.com/watch?v=", "");
   videoId = videoId.replace("https://www.youtube.com/shorts/", "");
   videoId = videoId.replace("https://youtu.be/", "");
   videoId = videoId.replace("https://youtube.com/shorts/", "");
+  videoId = videoId.replace("https://youtube.com/live/", "");
+  videoId = videoId.slice(0, 11);
+  console.log(videoId);
   const options = {
     method: "GET",
     url: "https://yt-api.p.rapidapi.com/dl",
@@ -39,8 +66,6 @@ exports.postYoutube = async (req, res, next) => {
           };
         });
 
-        console.log(dataList);
-
         res.status(200).json({
           thumb: result["thumbnail"][2].url,
           urls: dataList,
@@ -58,9 +83,13 @@ exports.postYoutube = async (req, res, next) => {
       .status(500)
       .json({ status: "fail", error: "Invalid request", code: 500 });
   }
+  const error = new Error(err);
+  error.httpStatusCode = 500;
+  return next(error);
 };
 
 exports.postTwitter = async (req, res, next) => {
+  console.log("twitter");
   const twUrl = req.body.urls;
 
   const options = {
@@ -79,13 +108,12 @@ exports.postTwitter = async (req, res, next) => {
   try {
     axios.request(options).then((response) => {
       const data = response.data;
-      console.log(data);
       let dataList = [];
 
       let dataUrl = data[0].urls;
 
       for (let i = 0; i < dataUrl.length; i++) {
-        ufs(dataUrl[i].url)
+        getFileSizeFromURL(dataUrl[i].url)
           .then((size) => {
             dataList.push({
               url: dataUrl[i].url,
@@ -94,6 +122,7 @@ exports.postTwitter = async (req, res, next) => {
             });
           })
           .then((result) => {
+            console.log(dataList);
             if (dataList.length > 2) {
               res.status(200).json({
                 thumb: data[0]["pictureUrl"],
@@ -101,6 +130,15 @@ exports.postTwitter = async (req, res, next) => {
                 title: data[0]["meta"]["title"],
               });
             }
+          })
+          .catch((err) => {
+            res
+              .status(500)
+              .json({ status: "fail", error: "Invalid request", code: 500 });
+
+            const error = new Error(err);
+            error.httpStatusCode = 500;
+            return next(error);
           });
       }
     });
@@ -110,4 +148,7 @@ exports.postTwitter = async (req, res, next) => {
       .status(500)
       .json({ status: "fail", error: "Invalid request", code: 500 });
   }
+  const error = new Error(err);
+  error.httpStatusCode = 500;
+  return next(error);
 };
