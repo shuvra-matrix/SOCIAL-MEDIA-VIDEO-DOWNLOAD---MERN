@@ -80,10 +80,10 @@ exports.postYoutube = (req, res, next) => {
     res
       .status(500)
       .json({ status: "fail", error: "Invalid request", code: 500 });
+    const err = new Error(error);
+    err.httpStatusCode = 500;
+    return next(err);
   }
-  const error = new Error(err);
-  error.httpStatusCode = 500;
-  return next(error);
 };
 
 exports.postTwitter = async (req, res, next) => {
@@ -145,8 +145,8 @@ exports.postTwitter = async (req, res, next) => {
     res
       .status(500)
       .json({ status: "fail", error: "Invalid request", code: 500 });
+    const err = new Error(error);
+    err.httpStatusCode = 500;
+    return next(err);
   }
-  const error = new Error(err);
-  error.httpStatusCode = 500;
-  return next(error);
 };
