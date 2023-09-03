@@ -10,7 +10,7 @@
 }
 
 .thumb-div {
-  border: 1px solid #c50052ce;
+  border: 1.2px solid #5e6076;
   width: 190px;
   height: 170px;
   display: flex;
@@ -69,7 +69,6 @@
   }
 
   .thumb-div {
-    border: 1.2px solid #5e6076;
     box-shadow: 1px 1px 10px 10px #0000000c;
   }
 

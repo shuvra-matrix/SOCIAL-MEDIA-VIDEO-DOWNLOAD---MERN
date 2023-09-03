@@ -1,13 +1,14 @@
 .loder-div {
   width: 100%;
   padding: 5px;
-  border: 1.2px solid #c50052b0;
   border-radius: 6px;
   color: rgb(224, 224, 224);
-  box-shadow: 1px 1px 10px 10px #00000038;
   margin-top: 1rem;
   display: flex;
   align-items: center;
+  background-color: #2e303f;
+  border: 1.2px solid #5e6076;
+  box-shadow: 1px 1px 20px 10px #00000000;
 }
 
 .loader {
