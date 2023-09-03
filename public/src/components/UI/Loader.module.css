@@ -74,9 +74,9 @@
 
 @media (max-width: 530px) {
   .loder-div {
-    background-color: #1f1f1f;
-    border: none;
-    box-shadow: 1px 1px 10px 10px #00000088;
+    background-color: #2e303f;
+    border: 1.2px solid #5e6076;
+    box-shadow: 1px 1px 20px 10px #00000000;
   }
 
   .loader {

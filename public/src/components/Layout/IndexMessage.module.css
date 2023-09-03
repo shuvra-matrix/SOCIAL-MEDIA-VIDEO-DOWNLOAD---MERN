@@ -2,18 +2,19 @@
   width: 100%;
   text-align: center;
   margin-top: 2rem;
-  border: 1.2px solid #c50052b0;
-  border-radius: 5px;
+  border: 1.2px solid #5e6076;
+  background-color: #2e303f;
+  border-radius: 12px;
   padding: 1.2rem;
   box-shadow: 1px 1px 10px 10px #00000038;
-  box-shadow: 1px 1px 20px 10px #00000038 inset;
 }
 
 .index-div h2 {
   color: rgb(224, 224, 224);
-  font-size: 1.2rem;
+  font-size: 1rem;
   text-align: left;
   margin-bottom: 2rem;
+  text-transform: uppercase;
 }
 
 .logo-div {
@@ -33,16 +34,14 @@
 @media (max-width: 530px) {
   .index-div {
     text-align: center;
-    border: 1px solid #000000cc;
-    background-color: #1f1f1f;
-    box-shadow: 1px 1px 10px 10px #00000056;
-    box-shadow: 1px 1px 20px 15px #00000070 inset;
+    box-shadow: 1px 1px 5px 5px #0000001a;
     padding: 1rem;
+    border-radius: 12px;
   }
 
   .index-div h2 {
-    color: rgb(201, 201, 201);
-    font-size: 1rem;
+    color: rgb(196, 196, 196);
+    font-size: 0.85rem;
     text-align: left;
     margin-bottom: 2rem;
   }

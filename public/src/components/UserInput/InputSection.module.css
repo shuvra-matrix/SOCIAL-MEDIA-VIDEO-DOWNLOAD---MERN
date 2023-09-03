@@ -1,9 +1,9 @@
 .input {
   width: 100%;
   padding: 1rem 105px 1rem 1rem;
-  border: 1.2px solid #c50052b0;
   border-radius: 6px;
-  background-color: transparent;
+  border: 1.2px solid #5e6076;
+  background-color: #2e303f;
   color: rgb(224, 224, 224);
   box-shadow: 1px 1px 10px 10px #00000038;
   box-shadow: 1px 1px 20px 10px #00000038 inset;
@@ -37,11 +37,8 @@
 
 @media (max-width: 530px) {
   .input {
-    border: 1.2px solid #000000;
-    background-color: #191919;
     color: rgb(224, 224, 224);
-    box-shadow: 1px 1px 10px 10px #00000038;
-    box-shadow: 1px 1px 5px 4px #00000061 inset;
+    box-shadow: 1px 1px 20px 10px #00000000 inset;
   }
 
   .input:focus {
@@ -53,13 +50,13 @@
   }
 
   .btn {
-    background-color: #ca5d15;
+    background-color: #8527e2;
     color: rgb(240, 240, 240);
-    box-shadow: 1px 1px 10px 10px #00000038;
+    box-shadow: 1px 1px 10px 10px #00000000;
   }
 
   .btn:hover {
-    background-color: #b64e08;
+    background-color: #7a1dd6;
   }
 }
 
