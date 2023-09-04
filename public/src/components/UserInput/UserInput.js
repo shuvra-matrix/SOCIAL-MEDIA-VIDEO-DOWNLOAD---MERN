@@ -21,6 +21,11 @@ const UserInput = (props) => {
 
   const userInputHandler = async (url, type) => {
     setUserNeW(false);
+    setUrlResult({
+      thumb: [],
+      urls: [],
+      title: [],
+    });
 
     let urls;
     if (type === "yt") {
@@ -30,6 +35,14 @@ const UserInput = (props) => {
       urls = "http://localhost:3030/api/v1/tw";
     }
 
+    if (type === "fb") {
+      urls = "http://localhost:3030/api/v1/fb";
+    }
+
+    if (type === "ig") {
+      urls = "http://localhost:3030/api/v1/ig";
+    }
+    console.log(url);
     const options = {
       method: "POST",
       headers: {
@@ -45,6 +58,7 @@ const UserInput = (props) => {
       setErrorMessage(url);
     } else {
       setLoader(true);
+      setServerOk(true);
       try {
         const response = await fetch(urls, options);
         const result = await response.json();

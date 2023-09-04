@@ -4,13 +4,21 @@
   justify-content: center;
   align-items: center;
   padding: 2rem;
-  border-radius: 5px;
+  border-radius: 12px;
   border: 1.2px solid #5e6076;
-  margin-top: 1rem;
+  margin-top: 2rem;
   background-color: #2e303f;
   box-shadow: 1px 1px 10px 10px #00000017;
   color: rgb(192, 192, 192);
   font-size: 0.9rem;
   text-align: left;
-  line-height: 1.3rem;
+  line-height: 1.5rem;
+  text-transform: uppercase;
+}
+
+@media (max-width: 520px) {
+  .error {
+    font-size: 0.8rem;
+    padding: 1.5rem;
+  }
 }

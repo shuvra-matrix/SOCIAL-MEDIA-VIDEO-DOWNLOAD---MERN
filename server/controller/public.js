@@ -13,7 +13,7 @@ function getFileSizeFromURL(url) {
       });
 
       response.data.on("end", () => {
-        resolve(fileSize);
+        resolve((fileSize / (1024 * 1024)).toFixed(1));
       });
 
       response.data.on("error", (error) => {
@@ -136,7 +136,7 @@ exports.postTwitter = async (req, res, next) => {
               dataList.push({
                 url: dataUrl[i].url,
                 quality: dataUrl[i].subName + "P",
-                size: (size / (1024 * 1024)).toFixed(1),
+                size: size,
               });
             })
             .then((result) => {
@@ -165,6 +165,146 @@ exports.postTwitter = async (req, res, next) => {
       });
   } catch (error) {
     console.log(error);
+    res.status(500).json({
+      status: "fail",
+      error: "An unexpected error occurred. Please try again later.",
+      code: 500,
+    });
+    const err = new Error(error);
+    err.httpStatusCode = 500;
+    return next(err);
+  }
+};
+
+exports.postFb = (req, res, next) => {
+  const url = req.body.urls;
+  const options = {
+    method: "GET",
+    url: "https://facebook-video-audio-download.p.rapidapi.com/geturl",
+    params: {
+      video_url: url,
+    },
+    headers: {
+      "X-RapidAPI-Key": process.env.FB_API_KEY,
+      "X-RapidAPI-Host": "facebook-video-audio-download.p.rapidapi.com",
+    },
+  };
+
+  try {
+    axios
+      .request(options)
+      .then((response) => {
+        const dataList = response.data;
+        const format = dataList.formats.slice(1, 3);
+
+        let urls = [];
+
+        format.forEach((data, index) => {
+          getFileSizeFromURL(data.url)
+            .then((size) => {
+              urls.push({
+                url: data.url,
+                quality: data.format_id.toUpperCase(),
+                size: size,
+              });
+            })
+            .then((result) => {
+              if (urls.length === format.length) {
+                res.status(200).json({
+                  thumb: dataList["thumbnail"],
+                  urls: urls,
+                  title: dataList["description"],
+                });
+              }
+            });
+        });
+      })
+      .catch((err) => {
+        res.status(403).json({
+          status: "fail",
+          error:
+            "Sorry, we couldn't locate the video you're looking for. It's possible that the video is set to private or has been removed.",
+          code: 403,
+        });
+
+        const error = new Error(err);
+        error.httpStatusCode = 403;
+        return next(error);
+      });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      status: "fail",
+      error: "An unexpected error occurred. Please try again later.",
+      code: 500,
+    });
+    const err = new Error(error);
+    err.httpStatusCode = 500;
+    return next(err);
+  }
+};
+
+exports.otherPost = (req, res, next) => {
+  const url = req.body.urls;
+
+  const options = {
+    method: "GET",
+    url: "https://vidsnap.p.rapidapi.com/fetch",
+    params: {
+      url: url,
+    },
+    headers: {
+      "X-RapidAPI-Key": process.env.IG_API_KEY,
+      "X-RapidAPI-Host": "vidsnap.p.rapidapi.com",
+    },
+  };
+
+  try {
+    axios
+      .request(options)
+      .then((response) => {
+        const responseData = response.data;
+
+        const formats = responseData.formats[0];
+
+        const videData = formats.videoData;
+
+        const urls = [];
+
+        videData.forEach((data) => {
+          getFileSizeFromURL(data.url)
+            .then((size) => {
+              urls.push({
+                url: data.url,
+                quality: data.quality.length > 3 ? data.quality : "720P",
+                size: size,
+              });
+            })
+            .then((result) => {
+              if (urls.length === videData.length) {
+                res.status(200).json({
+                  thumb: formats.imageData[formats.imageData.length - 1].url,
+                  urls: urls,
+                  title: formats.title,
+                });
+              }
+            });
+        });
+      })
+      .catch((err) => {
+        res.status(403).json({
+          status: "fail",
+          error:
+            "Sorry, we couldn't locate the video you're looking for. It's possible that the video is set to private or has been removed.",
+          code: 403,
+        });
+
+        const error = new Error(err);
+        error.httpStatusCode = 403;
+        return next(error);
+      });
+  } catch (error) {
+    console.error(error);
     res.status(500).json({
       status: "fail",
       error: "An unexpected error occurred. Please try again later.",

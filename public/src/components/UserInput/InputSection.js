@@ -15,7 +15,6 @@ const InputSection = (props) => {
     const pattern = /^(https:\/\/|http:\/\/)/;
     if (pattern.test(userInput)) {
       setInputValid(true);
-      console.log("hi sadsd");
       let type;
 
       if (userInput.includes("youtu")) {
@@ -23,6 +22,14 @@ const InputSection = (props) => {
       }
       if (userInput.includes("twitter.com")) {
         type = "tw";
+      }
+
+      if (userInput.includes("fb")) {
+        type = "fb";
+      }
+
+      if (userInput.includes("instagram")) {
+        type = "ig";
       }
 
       props.userUrls(userInput, type);
