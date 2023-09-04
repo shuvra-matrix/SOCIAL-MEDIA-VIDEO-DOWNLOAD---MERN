@@ -53,7 +53,6 @@ exports.postYoutube = (req, res, next) => {
       .request(options)
       .then((response) => {
         const result = response.data;
-        // console.log(result);
         if (result.thumbnail) {
           let dataList = result.formats.map((obj) => {
             return {

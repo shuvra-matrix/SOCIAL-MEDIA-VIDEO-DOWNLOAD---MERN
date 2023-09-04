@@ -36,6 +36,8 @@ To install and run this app locally, follow the steps below:
    ```bash
    YT_API_KEY=your_youtube_api_key
    TW_API_KEY=your_twitter_api_key
+   FB_API_KEY=your_facebook_api_key
+   IG_API_KEY=your_instagram_api_key
 
    ```
 
@@ -66,6 +68,10 @@ This will launch the server and make it accessible at [http://localhost:3030](ht
    YouTube Video Download API: https://rapidapi.com/ytjar/api/yt-api/pricing
 
    Twitter Video Download API: https://rapidapi.com/omarmhaimdat/api/twitter154
+
+   Facebook Video Download API: https://rapidapi.com/hyoga/api/facebook-video-audio-download
+
+   Instagram Video Download API: https://rapidapi.com/mudhayarajan2013/api/vidsnap
 
 This will start the frontend of the app and make it accessible at [http://localhost:3000](http://localhost:3000).
 

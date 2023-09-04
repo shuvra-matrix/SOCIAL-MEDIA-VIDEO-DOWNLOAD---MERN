@@ -2,7 +2,7 @@
   width: 100%;
   text-align: center;
   margin-top: 2rem;
-  border: 1.2px solid #5e6076;
+  border: 1.2px solid #0000001a;
   background-color: #2e303f;
   border-radius: 12px;
   padding: 1.2rem;
@@ -23,7 +23,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 15px;
 }
 
 .logo-div img {
@@ -47,7 +47,14 @@
   }
 
   .logo-div img {
-    width: 40px;
-    height: 40px;
+    width: 42px;
+    height: 42px;
+  }
+}
+
+@media (max-width: 290px) {
+  .logo-div img {
+    width: 35px;
+    height: 35px;
   }
 }
