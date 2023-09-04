@@ -71,7 +71,7 @@ This will launch the server and make it accessible at [http://localhost:3030](ht
 
    Facebook Video Download API: https://rapidapi.com/hyoga/api/facebook-video-audio-download
 
-   Instagram Video Download API: https://rapidapi.com/mudhayarajan2013/api/vidsnap
+   Instagram Video Download API: https://rapidapi.com/emmanueldavidyou/api/fb-video-reels
 
 This will start the frontend of the app and make it accessible at [http://localhost:3000](http://localhost:3000).
 
