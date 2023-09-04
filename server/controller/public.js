@@ -248,13 +248,13 @@ exports.otherPost = (req, res, next) => {
 
   const options = {
     method: "GET",
-    url: "https://vidsnap.p.rapidapi.com/fetch",
+    url: "https://fb-video-reels.p.rapidapi.com/api/getSocialVideo",
     params: {
       url: url,
     },
     headers: {
       "X-RapidAPI-Key": process.env.IG_API_KEY,
-      "X-RapidAPI-Host": "vidsnap.p.rapidapi.com",
+      "X-RapidAPI-Host": "fb-video-reels.p.rapidapi.com",
     },
   };
 
@@ -262,20 +262,18 @@ exports.otherPost = (req, res, next) => {
     axios
       .request(options)
       .then((response) => {
-        const responseData = response.data;
-
-        const formats = responseData.formats[0];
-
-        const videData = formats.videoData;
+        const formats = response.data;
+        const videData = formats.links;
 
         const urls = [];
 
         videData.forEach((data) => {
-          getFileSizeFromURL(data.url)
+          getFileSizeFromURL(data.link)
             .then((size) => {
               urls.push({
-                url: data.url,
-                quality: data.quality.length > 3 ? data.quality : "720P",
+                url: data.link,
+                quality:
+                  data.quality.length > 1 ? data.quality.toUpperCase() : "720P",
                 size: size,
               });
             })
@@ -283,9 +281,9 @@ exports.otherPost = (req, res, next) => {
               if (urls.length === videData.length) {
                 console.log(urls);
                 res.status(200).json({
-                  thumb: formats.imageData[formats.imageData.length - 1].url,
+                  thumb: formats.picture,
                   urls: urls,
-                  title: formats.title,
+                  title: "Your IG Videos",
                 });
               }
             });

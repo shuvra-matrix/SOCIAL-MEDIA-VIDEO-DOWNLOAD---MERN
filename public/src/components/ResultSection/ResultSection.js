@@ -7,7 +7,7 @@ const ResultSection = (props) => {
   return (
     <div className={style["result-div"]}>
       <div className={style["thumb-div"]}>
-        <img crossorigin src={thumb} alt="thumb"></img>
+        <img src={thumb} alt="thumb"></img>
       </div>
       <h3> {title} </h3>
       <div className={style["download-section"]}>
