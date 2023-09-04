@@ -3,11 +3,11 @@ import style from "./ResultSection.module.css";
 const ResultSection = (props) => {
   const title = props.result.title.slice(0, 60) + " ....";
   const thumb = props.result.thumb;
-  console.log(thumb);
+
   return (
     <div className={style["result-div"]}>
       <div className={style["thumb-div"]}>
-        <img src={thumb} alt="thumb"></img>
+        <img crossorigin src={thumb} alt="thumb"></img>
       </div>
       <h3> {title} </h3>
       <div className={style["download-section"]}>

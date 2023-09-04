@@ -17,8 +17,6 @@ const UserInput = (props) => {
     title: [],
   });
 
-  console.log("hidasdasd");
-
   const userInputHandler = async (url, type) => {
     setUserNeW(false);
     setUrlResult({
@@ -29,18 +27,18 @@ const UserInput = (props) => {
 
     let urls;
     if (type === "yt") {
-      urls = "https://successful-seal-nightshirt.cyclic.app/api/v1/yt";
+      urls = "http://localhost:3030/api/v1/yt";
     }
     if (type === "tw") {
-      urls = "https://successful-seal-nightshirt.cyclic.app/api/v1/tw";
+      urls = "http://localhost:3030/api/v1/tw";
     }
 
     if (type === "fb") {
-      urls = "https://successful-seal-nightshirt.cyclic.app/api/v1/fb";
+      urls = "http://localhost:3030/api/v1/fb";
     }
 
     if (type === "ig") {
-      urls = "https://successful-seal-nightshirt.cyclic.app/api/v1/ig";
+      urls = "http://localhost:3030/api/v1/ig";
     }
 
     const options = {
@@ -62,8 +60,6 @@ const UserInput = (props) => {
       try {
         const response = await fetch(urls, options);
         const result = await response.json();
-        console.log(result);
-        console.log(type);
         setLoader(false);
         if (result.status === "fail") {
           setServerOk(false);
@@ -73,7 +69,6 @@ const UserInput = (props) => {
           setUrlResult(result);
         }
       } catch (err) {
-        console.log(err);
         setLoader(false);
         setServerOk(false);
         setErrorMessage(

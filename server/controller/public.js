@@ -281,6 +281,7 @@ exports.otherPost = (req, res, next) => {
             })
             .then((result) => {
               if (urls.length === videData.length) {
+                console.log(urls);
                 res.status(200).json({
                   thumb: formats.imageData[formats.imageData.length - 1].url,
                   urls: urls,
@@ -291,6 +292,7 @@ exports.otherPost = (req, res, next) => {
         });
       })
       .catch((err) => {
+        console.log(err);
         res.status(403).json({
           status: "fail",
           error:
