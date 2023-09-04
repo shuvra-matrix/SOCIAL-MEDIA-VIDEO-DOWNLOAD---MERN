@@ -5,11 +5,12 @@
   align-items: center;
   padding: 2rem;
   border-radius: 5px;
-  border: 1px solid #c50052cc;
+  border: 1.2px solid #5e6076;
   margin-top: 1rem;
-  background-color: rgba(0, 0, 0, 0.555);
-  box-shadow: 1px 1px 10px 10px #00000038;
-  color: rgb(173, 173, 173);
+  background-color: #2e303f;
+  box-shadow: 1px 1px 10px 10px #00000017;
+  color: rgb(192, 192, 192);
   font-size: 0.9rem;
   text-align: left;
+  line-height: 1.3rem;
 }

@@ -49,37 +49,55 @@ exports.postYoutube = (req, res, next) => {
   };
 
   try {
-    axios.request(options).then((response) => {
-      const result = response.data;
-      // console.log(result);
-      if (result.thumbnail) {
-        let dataList = result.formats.map((obj) => {
-          return {
-            url: obj.url,
-            quality: obj.qualityLabel,
-            size: (
-              (obj.bitrate * (+obj.approxDurationMs / 1000)) /
-              (8 * 1024 * 1024)
-            ).toFixed(1),
-          };
-        });
+    axios
+      .request(options)
+      .then((response) => {
+        const result = response.data;
+        // console.log(result);
+        if (result.thumbnail) {
+          let dataList = result.formats.map((obj) => {
+            return {
+              url: obj.url,
+              quality: obj.qualityLabel,
+              size: (
+                (obj.bitrate * (+obj.approxDurationMs / 1000)) /
+                (8 * 1024 * 1024)
+              ).toFixed(1),
+            };
+          });
 
-        res.status(200).json({
-          thumb: result["thumbnail"][2].url,
-          urls: dataList,
-          title: result["title"],
+          res.status(200).json({
+            thumb: result["thumbnail"][2].url,
+            urls: dataList,
+            title: result["title"],
+          });
+        } else {
+          res.status(403).json({
+            status: "fail",
+            error:
+              "Sorry, we couldn't locate the video you're looking for. It's possible that the video is set to private or has been removed.",
+            code: 403,
+          });
+        }
+      })
+      .catch((error) => {
+        res.status(403).json({
+          status: "fail",
+          error:
+            "Sorry, we couldn't locate the video you're looking for. It's possible that the video is set to private or has been removed.",
+          code: 403,
         });
-      } else {
-        res
-          .status(403)
-          .json({ status: "fail", error: "Invalid request", code: 403 });
-      }
-    });
+        const err = new Error(error);
+        err.httpStatusCode = 403;
+        return next(err);
+      });
   } catch (error) {
     console.log(error);
-    res
-      .status(500)
-      .json({ status: "fail", error: "Invalid request", code: 500 });
+    res.status(500).json({
+      status: "fail",
+      error: "An unexpected error occurred. Please try again later.",
+      code: 500,
+    });
     const err = new Error(error);
     err.httpStatusCode = 500;
     return next(err);
@@ -104,47 +122,54 @@ exports.postTwitter = async (req, res, next) => {
   };
 
   try {
-    axios.request(options).then((response) => {
-      const data = response.data;
-      let dataList = [];
+    axios
+      .request(options)
+      .then((response) => {
+        const data = response.data;
+        let dataList = [];
 
-      let dataUrl = data[0].urls;
+        let dataUrl = data[0].urls;
 
-      for (let i = 0; i < dataUrl.length; i++) {
-        getFileSizeFromURL(dataUrl[i].url)
-          .then((size) => {
-            dataList.push({
-              url: dataUrl[i].url,
-              quality: dataUrl[i].subName + "P",
-              size: (size / (1024 * 1024)).toFixed(1),
-            });
-          })
-          .then((result) => {
-            console.log(dataList);
-            if (dataList.length === dataUrl.length) {
-              res.status(200).json({
-                thumb: data[0]["pictureUrl"],
-                urls: dataList,
-                title: data[0]["meta"]["title"],
+        for (let i = 0; i < dataUrl.length; i++) {
+          getFileSizeFromURL(dataUrl[i].url)
+            .then((size) => {
+              dataList.push({
+                url: dataUrl[i].url,
+                quality: dataUrl[i].subName + "P",
+                size: (size / (1024 * 1024)).toFixed(1),
               });
-            }
-          })
-          .catch((err) => {
-            res
-              .status(500)
-              .json({ status: "fail", error: "Invalid request", code: 500 });
+            })
+            .then((result) => {
+              console.log(dataList);
+              if (dataList.length === dataUrl.length) {
+                res.status(200).json({
+                  thumb: data[0]["pictureUrl"],
+                  urls: dataList,
+                  title: data[0]["meta"]["title"],
+                });
+              }
+            });
+        }
+      })
+      .catch((err) => {
+        res.status(403).json({
+          status: "fail",
+          error:
+            "Sorry, we couldn't locate the video you're looking for. It's possible that the video is set to private or has been removed.",
+          code: 403,
+        });
 
-            const error = new Error(err);
-            error.httpStatusCode = 500;
-            return next(error);
-          });
-      }
-    });
+        const error = new Error(err);
+        error.httpStatusCode = 500;
+        return next(error);
+      });
   } catch (error) {
     console.log(error);
-    res
-      .status(500)
-      .json({ status: "fail", error: "Invalid request", code: 500 });
+    res.status(500).json({
+      status: "fail",
+      error: "An unexpected error occurred. Please try again later.",
+      code: 500,
+    });
     const err = new Error(error);
     err.httpStatusCode = 500;
     return next(err);

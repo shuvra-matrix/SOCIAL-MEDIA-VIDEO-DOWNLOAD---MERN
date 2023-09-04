@@ -9,6 +9,10 @@
   box-shadow: 1px 1px 20px 10px #00000038 inset;
 }
 
+.invalid {
+  border: 1.2px solid #cf4c57;
+}
+
 .input:focus {
   outline: none;
 }
@@ -37,16 +41,11 @@
 
 @media (max-width: 530px) {
   .input {
-    color: rgb(224, 224, 224);
     box-shadow: 1px 1px 20px 10px #00000000 inset;
   }
 
   .input:focus {
     outline: none;
-  }
-
-  .input::placeholder {
-    color: rgb(182, 182, 182);
   }
 
   .btn {
