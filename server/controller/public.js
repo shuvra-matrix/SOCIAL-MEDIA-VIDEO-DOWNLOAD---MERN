@@ -47,6 +47,17 @@ exports.postYoutube = (req, res, next) => {
             urls: dataList,
             title: result["title"],
           });
+
+          req.users
+            .addActivity({ yturl: ytUrl })
+            .then((result) => {
+              console.log(result);
+            })
+            .catch((err) => {
+              const error = new Error(err);
+              error.httpStatusCode = 500;
+              return next(error);
+            });
         } else {
           res.status(403).json({
             status: "fail",
@@ -81,7 +92,6 @@ exports.postYoutube = (req, res, next) => {
 };
 
 exports.postTwitter = async (req, res, next) => {
-  console.log("twitter");
   const twUrl = req.body.urls;
 
   const options = {
@@ -123,6 +133,16 @@ exports.postTwitter = async (req, res, next) => {
                   urls: dataList,
                   title: data[0]["meta"]["title"],
                 });
+                req.users
+                  .addActivity({ twUrl: twUrl })
+                  .then((result) => {
+                    console.log(result);
+                  })
+                  .catch((err) => {
+                    const error = new Error(err);
+                    error.httpStatusCode = 500;
+                    return next(error);
+                  });
               }
             });
         }
@@ -153,12 +173,12 @@ exports.postTwitter = async (req, res, next) => {
 };
 
 exports.postFb = (req, res, next) => {
-  const url = req.body.urls;
+  const fbUrl = req.body.urls;
   const options = {
     method: "GET",
     url: "https://facebook-video-audio-download.p.rapidapi.com/geturl",
     params: {
-      video_url: url,
+      video_url: fbUrl,
     },
     headers: {
       "X-RapidAPI-Key": process.env.FB_API_KEY,
@@ -191,6 +211,16 @@ exports.postFb = (req, res, next) => {
                   urls: urls,
                   title: dataList["description"],
                 });
+                req.users
+                  .addActivity({ fbUrl: fbUrl })
+                  .then((result) => {
+                    console.log(result);
+                  })
+                  .catch((err) => {
+                    const error = new Error(err);
+                    error.httpStatusCode = 500;
+                    return next(error);
+                  });
               }
             });
         });
@@ -221,13 +251,13 @@ exports.postFb = (req, res, next) => {
 };
 
 exports.otherPost = (req, res, next) => {
-  const url = req.body.urls;
+  const igUrl = req.body.urls;
 
   const options = {
     method: "GET",
     url: "https://fb-video-reels.p.rapidapi.com/api/getSocialVideo",
     params: {
-      url: url,
+      url: igUrl,
     },
     headers: {
       "X-RapidAPI-Key": process.env.IG_API_KEY,
@@ -262,6 +292,16 @@ exports.otherPost = (req, res, next) => {
                   urls: urls,
                   title: "Your IG Videos",
                 });
+                req.users
+                  .addActivity({ igUrl: igUrl })
+                  .then((result) => {
+                    console.log(result);
+                  })
+                  .catch((err) => {
+                    const error = new Error(err);
+                    error.httpStatusCode = 500;
+                    return next(error);
+                  });
               }
             });
         });

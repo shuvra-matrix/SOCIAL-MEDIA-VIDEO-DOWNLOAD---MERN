@@ -24,7 +24,7 @@ const InputSection = (props) => {
         type = "tw";
       }
 
-      if (userInput.includes("fb")) {
+      if (userInput.includes("fb") || userInput.includes("facebook")) {
         type = "fb";
       }
 
