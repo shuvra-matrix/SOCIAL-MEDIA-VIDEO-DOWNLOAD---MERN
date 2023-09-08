@@ -1,29 +1,6 @@
 const axios = require("axios");
 require("dotenv").config();
-
-function getFileSizeFromURL(url) {
-  return new Promise(async (resolve, reject) => {
-    try {
-      const response = await axios.get(url, { responseType: "stream" });
-
-      let fileSize = 0;
-
-      response.data.on("data", (chunk) => {
-        fileSize += chunk.length;
-      });
-
-      response.data.on("end", () => {
-        resolve((fileSize / (1024 * 1024)).toFixed(1));
-      });
-
-      response.data.on("error", (error) => {
-        reject(error);
-      });
-    } catch (error) {
-      reject(error);
-    }
-  });
-}
+const aufs = require("all-url-file-size");
 
 exports.startApi = (req, res, next) => {
   res.status(200).json({ message: "Welcome To Vidown Api" });
@@ -130,12 +107,12 @@ exports.postTwitter = async (req, res, next) => {
         let dataUrl = data[0].urls;
 
         for (let i = 0; i < dataUrl.length; i++) {
-          getFileSizeFromURL(dataUrl[i].url)
+          aufs(dataUrl[i].url)
             .then((size) => {
               dataList.push({
                 url: dataUrl[i].url,
                 quality: dataUrl[i].subName + "P",
-                size: size,
+                size: (size / (1024 * 1024)).toFixed(1),
               });
             })
             .then((result) => {
@@ -199,12 +176,12 @@ exports.postFb = (req, res, next) => {
         let urls = [];
 
         format.forEach((data, index) => {
-          getFileSizeFromURL(data.url)
+          aufs(data.url)
             .then((size) => {
               urls.push({
                 url: data.url,
                 quality: data.format_id.toUpperCase(),
-                size: size,
+                size: (size / (1024 * 1024)).toFixed(1),
               });
             })
             .then((result) => {
@@ -268,13 +245,13 @@ exports.otherPost = (req, res, next) => {
         const urls = [];
 
         videData.forEach((data) => {
-          getFileSizeFromURL(data.link)
+          aufs(data.link)
             .then((size) => {
               urls.push({
                 url: data.link,
                 quality:
                   data.quality.length > 1 ? data.quality.toUpperCase() : "720P",
-                size: size,
+                size: (size / (1024 * 1024)).toFixed(1),
               });
             })
             .then((result) => {
