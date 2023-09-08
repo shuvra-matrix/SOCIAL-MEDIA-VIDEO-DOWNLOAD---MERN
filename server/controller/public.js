@@ -117,12 +117,12 @@ exports.postTwitter = async (req, res, next) => {
         let dataUrl = data[0].urls;
 
         for (let i = 0; i < dataUrl.length; i++) {
-          aufs(dataUrl[i].url)
+          aufs(dataUrl[i].url, "MB")
             .then((size) => {
               dataList.push({
                 url: dataUrl[i].url,
                 quality: dataUrl[i].subName + "P",
-                size: (size / (1024 * 1024)).toFixed(1),
+                size: size.toFixed(1),
               });
             })
             .then((result) => {
@@ -196,12 +196,12 @@ exports.postFb = (req, res, next) => {
         let urls = [];
 
         format.forEach((data, index) => {
-          aufs(data.url)
+          aufs(data.url, "MB")
             .then((size) => {
               urls.push({
                 url: data.url,
                 quality: data.format_id.toUpperCase(),
-                size: (size / (1024 * 1024)).toFixed(1),
+                size: size.toFixed(1),
               });
             })
             .then((result) => {
@@ -275,18 +275,17 @@ exports.otherPost = (req, res, next) => {
         const urls = [];
 
         videData.forEach((data) => {
-          aufs(data.link)
+          aufs(data.link, "MB")
             .then((size) => {
               urls.push({
                 url: data.link,
                 quality:
                   data.quality.length > 1 ? data.quality.toUpperCase() : "720P",
-                size: (size / (1024 * 1024)).toFixed(1),
+                size: size.toFixed(1),
               });
             })
             .then((result) => {
               if (urls.length === videData.length) {
-                console.log(urls);
                 res.status(200).json({
                   thumb: formats.picture,
                   urls: urls,
@@ -295,7 +294,7 @@ exports.otherPost = (req, res, next) => {
                 req.users
                   .addActivity({ igUrl: igUrl })
                   .then((result) => {
-                    console.log(result);
+                    console.log("OK");
                   })
                   .catch((err) => {
                     const error = new Error(err);
