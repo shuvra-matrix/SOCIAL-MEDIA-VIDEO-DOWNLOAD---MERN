@@ -3,6 +3,8 @@ const cros = require("cors");
 const requestIp = require("request-ip");
 require("dotenv").config();
 const mongoos = require("mongoose");
+const DeviceDetector = require("node-device-detector");
+const ClientHints = require("node-device-detector/client-hints");
 const MONGO_CONNECT = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}mymongoinit.6md0cxy.mongodb.net/smvd?retryWrites=true&w=majority`;
 const PORT_NO = "3040";
 
@@ -13,6 +15,12 @@ app.use(cros());
 app.use(requestIp.mw());
 
 const User = require("./models/user");
+const detector = new DeviceDetector({
+  clientIndexes: true,
+  deviceIndexes: true,
+  deviceAliasCode: false,
+});
+const clientHints = new ClientHints();
 
 const publicRoutes = require("./routes/public");
 
@@ -20,8 +28,12 @@ app.use((req, res, next) => {
   User.findOne({ ip: req.clientIp })
     .then((user) => {
       if (!user) {
+        const useragent = req.headers["user-agent"];
+        const clientHintsData = clientHints.parse(res.headers);
+        const result = detector.detect(useragent, clientHintsData);
         const newUser = new User({
           ip: req.clientIp,
+          deviceInfo: result,
           activity: [],
         });
         return newUser.save().then((result) => {

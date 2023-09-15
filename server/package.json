@@ -22,6 +22,7 @@
     "express": "^4.18.2",
     "mongodb": "^6.0.0",
     "mongoose": "^7.5.0",
+    "node-device-detector": "^2.0.16",
     "request-ip": "^3.3.0"
   },
   "engines": {
