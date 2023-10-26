@@ -176,13 +176,13 @@ exports.postFb = (req, res, next) => {
   const fbUrl = req.body.urls;
   const options = {
     method: "GET",
-    url: "https://facebook-video-audio-download.p.rapidapi.com/geturl",
+    url: "https://fb-video-reels.p.rapidapi.com/api/getSocialVideo",
     params: {
-      video_url: fbUrl,
+      url: fbUrl,
     },
     headers: {
       "X-RapidAPI-Key": process.env.FB_API_KEY,
-      "X-RapidAPI-Host": "facebook-video-audio-download.p.rapidapi.com",
+      "X-RapidAPI-Host": "fb-video-reels.p.rapidapi.com",
     },
   };
 
@@ -191,23 +191,34 @@ exports.postFb = (req, res, next) => {
       .request(options)
       .then((response) => {
         const dataList = response.data;
-        const format = dataList.formats.slice(1, 3);
+        const format = dataList.links;
+
+        if (dataList.error === true) {
+          return res.status(403).json({
+            status: "fail",
+            error:
+              "Sorry, we couldn't locate the video you're looking for. It's possible that the video is set to private or has been removed.",
+            code: 403,
+          });
+        }
+
+        console.log(dataList);
 
         let urls = [];
 
         format.forEach((data, index) => {
-          aufs(data.url, "MB")
+          aufs(data.link, "MB")
             .then((size) => {
               urls.push({
-                url: data.url,
-                quality: data.format_id.toUpperCase(),
+                url: data.link,
+                quality: data.quality.toUpperCase(),
                 size: size.toFixed(1),
               });
             })
             .then((result) => {
               if (urls.length === format.length) {
                 res.status(200).json({
-                  thumb: dataList["thumbnail"],
+                  thumb: dataList["picture"],
                   urls: urls,
                   title: dataList["description"],
                 });
@@ -271,6 +282,15 @@ exports.otherPost = (req, res, next) => {
       .then((response) => {
         const formats = response.data;
         const videData = formats.links;
+
+        if (formats.error === true) {
+          return res.status(403).json({
+            status: "fail",
+            error:
+              "Sorry, we couldn't locate the video you're looking for. It's possible that the video is set to private or has been removed.",
+            code: 403,
+          });
+        }
 
         const urls = [];
 
