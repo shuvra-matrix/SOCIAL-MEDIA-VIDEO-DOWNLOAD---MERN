@@ -2,6 +2,8 @@
 
 **Vidown** is a powerful web application that enables you to effortlessly download publicly accessible videos from popular social media platforms, including Twitter, YouTube, Facebook, and Instagram. Built with a robust backend in Node.js and a responsive frontend in React.js, Vidown provides a seamless and user-friendly video downloading experience.
 
+![demo image](https://github.com/shuvra-matrix/images/blob/main/Screenshot%202024-01-28%20095103.png?raw=true)
+
 ## Live Demo
 
 [https://vidown.netlify.app/](https://vidown.netlify.app/)
