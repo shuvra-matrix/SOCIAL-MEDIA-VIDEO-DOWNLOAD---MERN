@@ -14,8 +14,7 @@
     "nodemon": "^3.0.1"
   },
   "dependencies": {
-    "all-url-file-size": "^1.1.2",
-    "axios": "^1.5.0",
+    "all-url-file-size": "^1.2.1",
     "connect-mongodb-session": "^3.1.1",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
@@ -26,6 +25,6 @@
     "ua-parser-js": "^1.0.36"
   },
   "engines": {
-    "node": ">=18.16.1"
+    "node": ">=20.11.0"
   }
 }
