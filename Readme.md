@@ -2,7 +2,7 @@
 
 **Vidown** is a powerful web application that enables you to effortlessly download publicly accessible videos from popular social media platforms, including Twitter, YouTube, Facebook, and Instagram. Built with a robust backend in Node.js and a responsive frontend in React.js, Vidown provides a seamless and user-friendly video downloading experience.
 
-![demo image](https://github.com/shuvra-matrix/images/blob/main/Screenshot%202024-01-28%20095103.png?raw=true)
+![demo image](https://github.com/shuvra-matrix/images/blob/main/Screenshot%202024-02-09%20212655.png?raw=true)
 
 ## Live Demo
 
@@ -76,6 +76,24 @@ This will launch the server and make it accessible at [http://localhost:3030](ht
    Instagram Video Download API: https://rapidapi.com/emmanueldavidyou/api/fb-video-reels
 
 This will start the frontend of the app and make it accessible at [http://localhost:3000](http://localhost:3000).
+
+## Using Docker
+
+If you have Docker installed, you can easily run Vidown using Docker Compose. Follow the steps below:
+
+1. Make sure you have Docker and Docker Compose installed on your system.
+
+2. In the server directory of the project, create a `.env` file with the necessary API keys as mentioned in the installation steps.
+
+3. Open a terminal and run the following command to start Vidown using Docker Compose:
+
+   ```bash
+   docker-compose -f ./docker-compose.yaml up
+   ```
+
+   This command will build the Docker images and start the containers.
+
+4. Vidown will be accessible at [http://localhost:3000](http://localhost:3000) in your web browser.
 
 ## Usage
 
