@@ -1,6 +1,6 @@
 .input-div {
-  width: 40%;
-  margin: 5rem auto;
+  width: 45%;
+  margin: 3rem auto 0rem;
   position: relative;
 }
 
@@ -13,7 +13,6 @@
 @media (max-width: 550px) {
   .input-div {
     width: 80%;
-    margin: 3rem auto;
   }
 }
 

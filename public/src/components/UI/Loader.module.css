@@ -6,9 +6,9 @@
   margin-top: 1rem;
   display: flex;
   align-items: center;
-  background-color: #2e303f;
-  border: 1.2px solid #5e6076;
-  box-shadow: 1px 1px 20px 10px #00000000;
+  background-color: var(--loader-bg-color);
+  border: var(--loader-border);
+  box-shadow: var(--loader-box-shadow);
 }
 
 .loader {
@@ -16,8 +16,8 @@
   height: 10px;
   display: inline-block;
   position: relative;
-  background: #dd0155c9;
-  box-shadow: 1px 1px 20px 10px rgba(0, 0, 0, 0.295);
+  background: var(--loader-progress-bg-color);
+  box-shadow: var(--loader-progress-box-shadow);
   box-sizing: border-box;
   animation: animFw 8s linear infinite;
   border-radius: 5px;
@@ -27,7 +27,7 @@
   content: "";
   width: 10px;
   height: 1px;
-  background: #fff;
+  background: var(--loader-animated-color);
   position: absolute;
   top: 9px;
   right: -2px;

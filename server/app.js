@@ -5,7 +5,7 @@ require("dotenv").config();
 const mongoos = require("mongoose");
 const UAParser = require("ua-parser-js");
 const MONGO_CONNECT = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}mymongoinit.6md0cxy.mongodb.net/smvd?retryWrites=true&w=majority`;
-const PORT_NO = "3040";
+const PORT_NO = "3030";
 
 const app = express();
 

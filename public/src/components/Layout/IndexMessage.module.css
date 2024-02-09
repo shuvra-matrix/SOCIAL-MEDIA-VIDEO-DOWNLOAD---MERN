@@ -1,55 +1,245 @@
 .index-div {
-  width: 100%;
+  width: 70%;
   text-align: center;
-  margin-top: 2rem;
-  border: 1.2px solid #0000001a;
-  background-color: #2e303f;
-  border-radius: 12px;
   padding: 1.2rem;
-  box-shadow: 1px 1px 10px 10px #00000038;
+  position: relative;
+  margin: 2rem auto;
 }
 
-.index-div h2 {
-  color: rgb(224, 224, 224);
-  font-size: 1rem;
-  text-align: left;
-  margin-bottom: 2rem;
-  text-transform: uppercase;
+.index-div h1 {
+  font-size: 3.6rem;
+  color: var(--h1-font-color);
 }
 
-.logo-div {
-  margin: 1rem 0px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 15px;
+.head-two {
+  -webkit-text-fill-color: transparent;
+  background: -webkit-linear-gradient(#ff512f, #dd2476);
+  -webkit-background-clip: text;
 }
 
-.logo-div img {
-  width: 50px;
-  height: 50px;
+.head-three {
+  -webkit-text-fill-color: transparent;
+  background: -webkit-linear-gradient(#25ff92, #24afff);
+  -webkit-background-clip: text;
 }
 
-@media (max-width: 530px) {
+.index-div p {
+  color: var(--p-font-color);
+  font-size: 1.14rem;
+  margin: 1rem auto;
+  text-transform: capitalize;
+  text-align: center;
+  width: 60%;
+  line-height: 35px;
+  font-weight: 600;
+}
+
+.index-div img {
+  width: 55px;
+  height: 55px;
+  position: absolute;
+}
+
+.yt-logo {
+  top: 0%;
+  right: 10%;
+  filter: drop-shadow(5px 5px 25px #f5101f);
+}
+
+.fb-logo {
+  bottom: 0px;
+  right: 15%;
+  filter: drop-shadow(5px 5px 25px #1ca4ff);
+}
+
+.insta-logo {
+  bottom: 10%;
+  left: 12%;
+  filter: drop-shadow(5px 5px 25px #906bff);
+}
+
+.x-logo {
+  top: -5%;
+  left: 10%;
+  filter: drop-shadow(5px 5px 25px #118be4);
+}
+
+@media (max-width: 1520px) {
   .index-div {
-    text-align: center;
-    box-shadow: 1px 1px 5px 5px #0000001a;
-    padding: 1rem;
-    border-radius: 12px;
-    margin-top: 1rem;
+    width: 80%;
   }
 
-  .index-div h2 {
-    color: rgb(196, 196, 196);
-    font-size: 0.85rem;
-    text-align: left;
-    margin-bottom: 2rem;
+  .index-div p {
+    width: 60%;
+  }
+}
+
+@media (max-width: 1350px) {
+  .index-div {
+    width: 90%;
+  }
+
+  .index-div p {
+    width: 55%;
+  }
+}
+
+@media (max-width: 1200px) {
+  .index-div {
+    width: 100%;
+  }
+
+  .index-div p {
+    width: 60%;
+  }
+
+  .yt-logo {
+    right: 5%;
+  }
+
+  .fb-logo {
+    right: 10%;
+  }
+
+  .insta-logo {
+    left: 8%;
+  }
+
+  .x-logo {
+    left: 5%;
+  }
+}
+
+@media (max-width: 850px) {
+  .index-div {
+    margin-top: 3rem;
+    padding: 0px 32px;
+  }
+
+  .index-div h1 {
+    font-size: 3rem;
+  }
+
+  .index-div p {
+    width: 75%;
+  }
+  .index-div img {
+    width: 45px;
+    height: 45px;
+  }
+
+  .yt-logo {
+    top: -20%;
+    right: 5%;
+  }
+
+  .fb-logo {
+    right: 6%;
+    bottom: -15%;
+  }
+
+  .insta-logo {
+    left: 8%;
+    bottom: -10%;
+  }
+
+  .x-logo {
+    top: -18%;
+    left: 5%;
+  }
+}
+
+@media (max-width: 670px) {
+  .index-div {
+    margin-bottom: 4rem;
+  }
+
+  .index-div h1 {
+    font-size: 2.5rem;
+  }
+
+  .index-div p {
+    font-size: 1rem;
+    line-height: 25px;
+    width: 100%;
+  }
+
+  .index-div p {
+    width: 90%;
+  }
+
+  .yt-logo {
+    top: -30%;
+    right: 5%;
+  }
+
+  .fb-logo {
+    bottom: -30%;
+    right: 6%;
+  }
+
+  .insta-logo {
+    left: 5%;
+    bottom: -25%;
+  }
+
+  .x-logo {
+    top: -25%;
+    left: 5%;
+  }
+}
+
+@media (max-width: 540px) {
+  .index-div h1 {
+    font-size: 2rem;
   }
 
   .logo-div img {
     width: 42px;
     height: 42px;
+  }
+
+  .yt-logo {
+    top: -15%;
+    right: 8%;
+  }
+
+  .fb-logo {
+    bottom: -18%;
+    right: 9%;
+  }
+
+  .insta-logo {
+    left: 9%;
+    bottom: -20%;
+  }
+
+  .x-logo {
+    top: -20%;
+    left: 8%;
+  }
+}
+
+@media (max-width: 450px) {
+  .index-div {
+    margin-bottom: 5rem;
+  }
+
+  .index-div h1 {
+    font-size: 2.6rem;
+  }
+  .insta-logo {
+    bottom: -18%;
+  }
+}
+
+@media (max-width: 350px) {
+  .index-div img {
+    width: 40px;
+    height: 40px;
+  }
+  .index-div h1 {
+    font-size: 2rem;
   }
 }
 
@@ -57,5 +247,18 @@
   .logo-div img {
     width: 35px;
     height: 35px;
+  }
+  .insta-logo {
+    left: 9%;
+    bottom: -14%;
+  }
+
+  .x-logo {
+    top: -10%;
+    left: 8%;
+  }
+  .fb-logo {
+    bottom: -10%;
+    right: 5%;
   }
 }

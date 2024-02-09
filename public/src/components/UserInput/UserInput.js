@@ -4,13 +4,11 @@ import ResultSection from "../ResultSection/ResultSection";
 import Loader from "../UI/Loader";
 import { useState } from "react";
 import Error from "../UI/Error";
-import IndexMessage from "../Layout/IndexMessage";
 
 const UserInput = (props) => {
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoader, setLoader] = useState(false);
   const [isServerOk, setServerOk] = useState(true);
-  const [isUserNew, setUserNeW] = useState(true);
   const [urlResult, setUrlResult] = useState({
     thumb: [],
     urls: [],
@@ -18,7 +16,6 @@ const UserInput = (props) => {
   });
 
   const userInputHandler = async (url, type) => {
-    setUserNeW(false);
     setUrlResult({
       thumb: [],
       urls: [],
@@ -27,18 +24,18 @@ const UserInput = (props) => {
 
     let urls;
     if (type === "yt") {
-      urls = "http://localhost:3040/api/v1/yt";
+      urls = "http://localhost:3030/api/v1/yt";
     }
     if (type === "tw") {
-      urls = "http://localhost:3040/api/v1/tw";
+      urls = "http://localhost:3030/api/v1/tw";
     }
 
     if (type === "fb") {
-      urls = "http://localhost:3040/api/v1/fb";
+      urls = "http://localhost:3030/api/v1/fb";
     }
 
     if (type === "ig") {
-      urls = "http://localhost:3040/api/v1/ig";
+      urls = "http://localhost:3030/api/v1/ig";
     }
 
     const options = {
@@ -81,8 +78,6 @@ const UserInput = (props) => {
   return (
     <div className={style["input-div"]}>
       <InputSection userUrls={userInputHandler} />
-      {isUserNew && <IndexMessage />}
-
       {isLoader && <Loader />}
       {urlResult.urls.length > 0 && isServerOk && (
         <ResultSection result={urlResult} />

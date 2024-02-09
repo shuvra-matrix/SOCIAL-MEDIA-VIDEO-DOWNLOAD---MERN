@@ -1,0 +1,28 @@
+.footer {
+  width: 100%;
+  height: 40px;
+  margin: auto;
+  padding: 3rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: var(--footer-text-color);
+}
+
+.footer img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.footer span {
+  font-size: 1.1rem;
+  font-weight: 500;
+}

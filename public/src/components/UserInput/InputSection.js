@@ -1,9 +1,13 @@
 import style from "./InputSection.module.css";
 import { useState } from "react";
+import urlLightIcon from "../../assets/icons8-url-48-light.png";
+import urlDarkIcon from "../../assets/icons8-url-48-dark.png";
+import { useTheme } from "../../store/ThemeContext";
 
 const InputSection = (props) => {
   const [userInput, setUserInput] = useState("");
   const [isInputValid, setInputValid] = useState(true);
+  const { theme } = useTheme();
 
   const userInputHnadler = (e) => {
     setInputValid(true);
@@ -41,8 +45,11 @@ const InputSection = (props) => {
     }
   };
 
+  const urlIcon = theme === "dark" ? urlDarkIcon : urlLightIcon;
+
   return (
     <form method="POST" onSubmit={submitHandler}>
+      <img className={style["url-icon"]} src={urlIcon} alt="url icon"></img>
       <input
         className={
           isInputValid

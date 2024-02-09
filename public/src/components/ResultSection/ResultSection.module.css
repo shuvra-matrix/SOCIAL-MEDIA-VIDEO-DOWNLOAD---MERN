@@ -1,16 +1,17 @@
 .result-div {
   width: 100%;
-  border: 1.2px solid #5e6076;
+  border: var(--result-border);
   border-radius: 12px;
-  background-color: #00000085;
+  background-color: var(--result-background-color);
   margin-top: 1rem;
+  margin-bottom: 2rem;
   padding: 1rem;
   text-align: center;
-  box-shadow: 1px 1px 10px 10px #00000038;
+  box-shadow: var(--result-box-shadow);
 }
 
 .thumb-div {
-  border: 1.2px solid #5e6076;
+  border: var(--result-border);
   width: 190px;
   height: 170px;
   display: flex;
@@ -29,23 +30,25 @@
 
 .result-div h3 {
   margin: 1rem 0rem;
-  color: rgb(192, 192, 192);
+  color: var(--result-title-font-color);
 }
 
 .download-section table {
-  background-color: #212333;
-  border: 1.2px solid #5e6076;
+  background-color: var(--result-table-bg-color);
+  border: var(--result-border);
   width: 100%;
-  color: rgb(201, 201, 201);
+  color: var(--result-table-font-color);
   border-radius: 5px;
 }
 
 .download-section th {
   padding-top: 1rem;
+  text-transform: uppercase;
 }
 
 .download-section td {
   padding: 1.2rem;
+  font-size: 1.1rem;
 }
 
 .download-section a {
@@ -61,28 +64,18 @@
   background-color: #a10144;
 }
 
-@media (max-width: 530px) {
-  .result-div {
-    background-color: #00000061;
-    box-shadow: 1px 1px 5px 5px #0000001a;
-    box-shadow: 1px 1px 20px 10px #00000000 inset;
+@media (max-width: 560px) {
+  .download-section th {
+    padding-top: 0.8rem;
+    font-size: 0.8rem;
   }
 
-  .thumb-div {
-    box-shadow: 1px 1px 10px 10px #0000000c;
+  .download-section td {
+    padding: 0.8rem;
+    font-size: 0.8rem;
   }
-
-  .result-div h3 {
-    color: rgb(192, 192, 192);
-  }
-
-  .download-section table {
-    color: rgb(201, 201, 201);
-    box-shadow: 1px 1px 10px 10px #00000038;
-  }
-
   .download-section a {
-    background-color: #b5343a;
+    background-color: #6f14d6;
     color: rgb(226, 226, 226);
   }
 
@@ -96,15 +89,6 @@
     font-size: 0.9rem;
   }
 
-  .download-section th {
-    padding-top: 0.8rem;
-    font-size: 0.8rem;
-  }
-
-  .download-section td {
-    padding: 1rem;
-    font-size: 0.8rem;
-  }
   .download-section a {
     padding: 0.5rem 0.8rem;
     font-size: 0.8rem;
@@ -134,7 +118,7 @@
   }
 
   .result-div {
-    padding: 1rem 0.8rem;
+    padding: 1rem 0.4rem;
     margin-top: 2rem;
   }
 }

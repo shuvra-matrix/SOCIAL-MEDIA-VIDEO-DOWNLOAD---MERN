@@ -1,3 +1,4 @@
+import ThemeButton from "../UI/ThemeButton";
 import styles from "./Header.module.css";
 import React from "react";
 
@@ -5,15 +6,12 @@ const Header = (props) => {
   return (
     <header className={styles["header"]}>
       <a href="/">
-        <h2>Vidown</h2>
+        <h2>
+          Vi<span>do</span>wn
+        </h2>
       </a>
-      <a
-        href="https://github.com/shuvra-matrix/SOCIAL-MEDIA-VIDEO-DOWNLOAD---MERN"
-        target="_blank"
-        rel="noreferrer"
-      >
-        <h4>About Us</h4>
-      </a>
+
+      <ThemeButton />
     </header>
   );
 };

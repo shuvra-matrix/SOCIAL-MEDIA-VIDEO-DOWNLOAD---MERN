@@ -1,12 +1,13 @@
 .input {
   width: 100%;
-  padding: 1rem 105px 1rem 1rem;
+  height: 60px;
+  padding: 1rem 6.5rem 1rem 3.2rem;
   border-radius: 6px;
   border: 1.2px solid #0000001a;
-  background-color: #2e303f;
-  color: rgb(224, 224, 224);
-  box-shadow: 1px 1px 10px 10px #00000038;
-  box-shadow: 1px 1px 20px 10px #00000038 inset;
+  background-color: var(--input-background);
+  color: var(--input-text-color);
+  box-shadow: var(--input-box-shadow);
+  font-size: 1.05rem;
 }
 
 .invalid {
@@ -18,50 +19,45 @@
 }
 
 .input::placeholder {
-  color: rgb(216, 216, 216);
+  color: var(--input-placeholder-text-color);
 }
 
 .btn {
-  font-size: 0.8rem;
+  font-size: 1rem;
   position: absolute;
+  height: 50px;
+  font-weight: 700;
   padding: 0.75rem 1rem;
   border: 0px;
   border-radius: 5px;
-  background-color: #c50052ce;
+  background-color: var(--input-button-background-color);
   color: rgb(235, 235, 235);
   right: 5px;
   top: 5px;
   cursor: pointer;
-  box-shadow: 1px 1px 10px 10px #00000038;
 }
 
 .btn:hover {
-  background-color: #91003c;
+  background-color: var(--input-button-hover-background-color);
+}
+
+.url-icon {
+  position: absolute;
+  top: 10px;
+  left: 6px;
+  width: 40px;
+  height: 40px;
 }
 
 @media (max-width: 530px) {
-  .input {
-    box-shadow: 1px 1px 20px 10px #00000000 inset;
-  }
-
   .input:focus {
     outline: none;
-  }
-
-  .btn {
-    background-color: #8527e2;
-    color: rgb(240, 240, 240);
-    box-shadow: 1px 1px 10px 10px #00000000;
-  }
-
-  .btn:hover {
-    background-color: #7a1dd6;
   }
 }
 
 @media (max-width: 425px) {
   .input {
-    padding: 0.8rem 100px 0.8rem 1rem;
+    padding: 0.8rem 100px 0.8rem 3.2rem;
   }
   .btn {
     padding: 0.6rem 0.8rem;
