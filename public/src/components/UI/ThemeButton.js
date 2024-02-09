@@ -18,11 +18,11 @@ const ThemeButton = () => {
   const buttonIcon = theme === "dark" ? moonIcon : sunIcon;
 
   return (
-    <div className={`${styles["theme-btn"]} ${styles[btnThemeClass]}`}>
-      <div
-        onClick={themeHandler}
-        className={`${styles["theme-btn-round"]} ${styles[btnRoundClass]}`}
-      >
+    <div
+      onClick={themeHandler}
+      className={`${styles["theme-btn"]} ${styles[btnThemeClass]}`}
+    >
+      <div className={`${styles["theme-btn-round"]} ${styles[btnRoundClass]}`}>
         <img src={buttonIcon} alt="icon"></img>
       </div>
     </div>

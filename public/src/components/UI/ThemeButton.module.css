@@ -5,6 +5,7 @@
   position: relative;
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 .theme-btn-round {
@@ -12,7 +13,7 @@
   width: 26px;
   border-radius: 50%;
   position: absolute;
-  cursor: pointer;
+
   display: flex;
   align-items: center;
   justify-content: center;
