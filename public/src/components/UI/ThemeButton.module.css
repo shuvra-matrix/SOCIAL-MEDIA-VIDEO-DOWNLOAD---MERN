@@ -6,6 +6,7 @@
   display: flex;
   align-items: center;
   cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .theme-btn-round {
@@ -13,10 +14,10 @@
   width: 26px;
   border-radius: 50%;
   position: absolute;
-
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .theme-btn-round img {
@@ -40,14 +41,16 @@
 
 .theme-btn-round-dark {
   background-color: rgb(255, 255, 255);
-  left: 2px;
+  left: 1px;
   border: 1px solid black;
   box-shadow: 0px 0px 1px 1px black;
+  transition: left 0.3s ease;
 }
 
 .theme-btn-round-light {
   background-color: #d8d8d8;
   border: 1px solid #3180ff;
   box-shadow: 0px 0px 1px 1px #3e88ff;
-  right: 2px;
+  transition: left 0.3s ease;
+  left: 31px;
 }

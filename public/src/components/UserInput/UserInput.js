@@ -24,18 +24,18 @@ const UserInput = (props) => {
 
     let urls;
     if (type === "yt") {
-      urls = "http://localhost:3030/api/v1/yt";
+      urls = "https://successful-seal-nightshirt.cyclic.app/api/v1/yt";
     }
     if (type === "tw") {
-      urls = "http://localhost:3030/api/v1/tw";
+      urls = "https://successful-seal-nightshirt.cyclic.app/api/v1/tw";
     }
 
     if (type === "fb") {
-      urls = "http://localhost:3030/api/v1/fb";
+      urls = "https://successful-seal-nightshirt.cyclic.app/api/v1/fb";
     }
 
     if (type === "ig") {
-      urls = "http://localhost:3030/api/v1/ig";
+      urls = "https://successful-seal-nightshirt.cyclic.app/api/v1/ig";
     }
 
     const options = {
