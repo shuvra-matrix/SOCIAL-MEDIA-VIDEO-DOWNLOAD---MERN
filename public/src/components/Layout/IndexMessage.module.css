@@ -40,25 +40,101 @@
   position: absolute;
 }
 
+@keyframes ytMovement {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    transform: translate(10px, -10px) scale(1.1);
+  }
+  50% {
+    transform: translate(-10px, 10px) scale(0.9);
+  }
+  75% {
+    transform: translate(10px, 10px) scale(1.05);
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+@keyframes fbMovement {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    transform: translate(-10px, 10px) scale(1.1);
+  }
+  50% {
+    transform: translate(10px, -10px) scale(0.9);
+  }
+  75% {
+    transform: translate(-10px, -10px) scale(1.05);
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+@keyframes instaMovement {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    transform: translate(10px, 10px) scale(1.1);
+  }
+  50% {
+    transform: translate(-10px, -10px) scale(0.9);
+  }
+  75% {
+    transform: translate(10px, -10px) scale(1.05);
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+@keyframes xMovement {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    transform: translate(-10px, -10px) scale(1.1);
+  }
+  50% {
+    transform: translate(10px, 10px) scale(0.9);
+  }
+  75% {
+    transform: translate(-10px, 10px) scale(1.05);
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+}
+
 .yt-logo {
+  animation: ytMovement 5s infinite ease-in-out;
   top: 0%;
   right: 10%;
   filter: drop-shadow(5px 5px 25px #f5101f);
 }
 
 .fb-logo {
+  animation: fbMovement 5s infinite ease-in-out;
   bottom: 0px;
   right: 15%;
   filter: drop-shadow(5px 5px 25px #1ca4ff);
 }
 
 .insta-logo {
+  animation: instaMovement 5s infinite ease-in-out;
   bottom: 10%;
   left: 12%;
   filter: drop-shadow(5px 5px 25px #906bff);
 }
 
 .x-logo {
+  animation: xMovement 5s infinite ease-in-out;
   top: -5%;
   left: 10%;
   filter: drop-shadow(5px 5px 25px #118be4);

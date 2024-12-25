@@ -37,9 +37,7 @@ const InputSection = (props) => {
       }
 
       props.userUrls(userInput, type);
-      setUserInput("");
     } else {
-      setUserInput("");
       props.userUrls("Please enter a valid URL.", "error");
       setInputValid(false);
     }
