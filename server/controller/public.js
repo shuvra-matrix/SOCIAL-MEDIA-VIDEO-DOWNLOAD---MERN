@@ -14,7 +14,7 @@ exports.postYoutube = (req, res, next) => {
   videoId = videoId.replace("https://youtube.com/shorts/", "");
   videoId = videoId.replace("https://www.youtube.com/live/", "");
   videoId = videoId.slice(0, 11);
-  console.log(videoId);
+
   const options = {
     method: "GET",
     url: "https://yt-api.p.rapidapi.com/dl",
@@ -51,7 +51,7 @@ exports.postYoutube = (req, res, next) => {
           req.users
             .addActivity({ yturl: ytUrl })
             .then((result) => {
-              console.log(result);
+              // console.log(result);
             })
             .catch((err) => {
               const error = new Error(err);
@@ -174,91 +174,73 @@ exports.postTwitter = async (req, res, next) => {
 
 exports.postFb = (req, res, next) => {
   const fbUrl = req.body.urls;
+
   const options = {
-    method: "GET",
-    url: "https://fb-video-reels.p.rapidapi.com/api/getSocialVideo",
+    method: 'GET',
+    url: 'https://facebook-reel-and-video-downloader.p.rapidapi.com/app/main.php',
     params: {
-      url: fbUrl,
+      url: 'https://www.facebook.com/share/r/19hAnb69w2/'
     },
     headers: {
-      "X-RapidAPI-Key": process.env.FB_API_KEY,
-      "X-RapidAPI-Host": "fb-video-reels.p.rapidapi.com",
-    },
+      'x-rapidapi-key': process.env.FB_API_KEY,
+      'x-rapidapi-host': 'facebook-reel-and-video-downloader.p.rapidapi.com'
+    }
   };
 
-  try {
-    axios
-      .request(options)
-      .then((response) => {
-        const dataList = response.data;
-        const format = dataList.links;
+  axios
+    .request(options)
+    .then((response) => {
+      const dataList = response.data;
+      const format = dataList.links;
 
-        if (dataList.error === true) {
-          return res.status(403).json({
-            status: "fail",
-            error:
-              "Sorry, we couldn't locate the video you're looking for. It's possible that the video is set to private or has been removed.",
-            code: 403,
-          });
-        }
-
-        console.log(dataList);
-
-        let urls = [];
-
-        format.forEach((data, index) => {
-          aufs(data.link, "MB")
-            .then((size) => {
-              urls.push({
-                url: data.link,
-                quality: data.quality.toUpperCase(),
-                size: size.toFixed(1),
-              });
-            })
-            .then((result) => {
-              if (urls.length === format.length) {
-                res.status(200).json({
-                  thumb: dataList["picture"],
-                  urls: urls,
-                  title: dataList["description"],
-                });
-                req.users
-                  .addActivity({ fbUrl: fbUrl })
-                  .then((result) => {
-                    console.log(result);
-                  })
-                  .catch((err) => {
-                    const error = new Error(err);
-                    error.httpStatusCode = 500;
-                    return next(error);
-                  });
-              }
-            });
-        });
-      })
-      .catch((err) => {
-        res.status(403).json({
+      if (dataList.error === true) {
+        return res.status(403).json({
           status: "fail",
           error:
             "Sorry, we couldn't locate the video you're looking for. It's possible that the video is set to private or has been removed.",
           code: 403,
         });
+      }
 
-        const error = new Error(err);
-        error.httpStatusCode = 403;
-        return next(error);
+      const formatEntries = Object.entries(format);
+      const sizePromises = formatEntries.map(([key, url]) =>
+        aufs(url, "MB").then((size) => ({
+          url: url,
+          quality: key.toUpperCase(),
+          size: size.toFixed(1),
+        }))
+      );
+
+      Promise.all(sizePromises)
+        .then((urls) => {
+          res.status(200).json({
+            thumb: dataList["thumbnail"],
+            urls: urls,
+            title: dataList?.["description"] || "Your Facebook Videos",
+          });
+          return req.users.addActivity({ fbUrl: fbUrl });
+        })
+        .then((result) => {
+          console.log(result);
+        })
+        .catch((err) => {
+          const error = new Error(err);
+          error.httpStatusCode = 500;
+          return next(error);
+        });
+    })
+    .catch((err) => {
+      res.status(403).json({
+        status: "fail",
+        error:
+          "Sorry, we couldn't locate the video you're looking for. It's possible that the video is set to private or has been removed.",
+        code: 403,
       });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({
-      status: "fail",
-      error: "An unexpected error occurred. Please try again later.",
-      code: 500,
+
+      const error = new Error(err);
+      error.httpStatusCode = 403;
+      return next(error);
     });
-    const err = new Error(error);
-    err.httpStatusCode = 500;
-    return next(err);
-  }
 };
 
 exports.otherPost = (req, res, next) => {
