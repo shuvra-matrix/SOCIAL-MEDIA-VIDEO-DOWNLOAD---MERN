@@ -1,8 +1,8 @@
 import style from "./InputSection.module.css";
-import { useState } from "react";
+import {useState} from "react";
 import urlLightIcon from "../../assets/icons8-url-48-light.png";
 import urlDarkIcon from "../../assets/icons8-url-48-dark.png";
-import { useTheme } from "../../store/ThemeContext";
+import {useTheme} from "../../store/ThemeContext";
 
 const InputSection = (props) => {
   const [userInput, setUserInput] = useState("");
@@ -24,7 +24,7 @@ const InputSection = (props) => {
       if (userInput.includes("youtu")) {
         type = "yt";
       }
-      if (userInput.includes("twitter.com")) {
+      if (userInput.includes("twitter.com") || userInput.includes("x.com")) {
         type = "tw";
       }
 
