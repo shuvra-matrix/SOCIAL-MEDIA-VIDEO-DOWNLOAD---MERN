@@ -246,89 +246,72 @@ exports.postFb = (req, res, next) => {
 exports.otherPost = (req, res, next) => {
   const igUrl = req.body.urls;
 
+  const encodedParams = new URLSearchParams();
+  encodedParams.set('url', igUrl);
+
   const options = {
-    method: "GET",
-    url: "https://fb-video-reels.p.rapidapi.com/api/getSocialVideo",
-    params: {
-      url: igUrl,
-    },
+    method: 'POST',
+    url: 'https://snap-video3.p.rapidapi.com/download',
     headers: {
-      "X-RapidAPI-Key": process.env.IG_API_KEY,
-      "X-RapidAPI-Host": "fb-video-reels.p.rapidapi.com",
+      'x-rapidapi-key': process.env.IG_API_KEY,
+      'x-rapidapi-host': 'snap-video3.p.rapidapi.com',
+      'Content-Type': 'application/x-www-form-urlencoded'
     },
+    data: encodedParams,
   };
 
-  try {
-    axios
-      .request(options)
-      .then((response) => {
-        const formats = response.data;
-        const videData = formats.links;
+  axios
+    .request(options)
+    .then((response) => {
+      const formats = response.data;
+      const videData = formats.medias;
 
-        if (formats.error === true) {
-          return res.status(403).json({
-            status: "fail",
-            error:
-              "Sorry, we couldn't locate the video you're looking for. It's possible that the video is set to private or has been removed.",
-            code: 403,
-          });
-        }
-
-        const urls = [];
-
-        videData.forEach((data) => {
-          aufs(data.link, "MB")
-            .then((size) => {
-              urls.push({
-                url: data.link,
-                quality:
-                  data.quality.length > 1 ? data.quality.toUpperCase() : "720P",
-                size: size.toFixed(1),
-              });
-            })
-            .then((result) => {
-              if (urls.length === videData.length) {
-                res.status(200).json({
-                  thumb: formats.picture,
-                  urls: urls,
-                  title: "Your IG Videos",
-                });
-                req.users
-                  .addActivity({ igUrl: igUrl })
-                  .then((result) => {
-                    console.log("OK");
-                  })
-                  .catch((err) => {
-                    const error = new Error(err);
-                    error.httpStatusCode = 500;
-                    return next(error);
-                  });
-              }
-            });
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-        res.status(403).json({
+      if (formats.error === true) {
+        return res.status(403).json({
           status: "fail",
           error:
             "Sorry, we couldn't locate the video you're looking for. It's possible that the video is set to private or has been removed.",
           code: 403,
         });
+      }
 
-        const error = new Error(err);
-        error.httpStatusCode = 403;
-        return next(error);
+      const sizePromises = videData.map(data =>
+        aufs(data.url, "MB").then((size) => ({
+          url: data.url,
+          quality: data.quality.length > 1 ? data.quality.toUpperCase() : "720P",
+          size: size.toFixed(1),
+        }))
+      );
+
+      Promise.all(sizePromises)
+        .then((urls) => {
+          res.status(200).json({
+            thumb: formats.thumbnail,
+            urls: urls,
+            title: formats.title ||  "Your IG Videos",
+          });
+          return req.users.addActivity({ igUrl: igUrl });
+        })
+        .then((result) => {
+          console.log("OK");
+        })
+        .catch((err) => {
+          const error = new Error(err);
+          error.httpStatusCode = 500;
+          return next(error);
+        });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(403).json({
+        status: "fail",
+        error:
+          "Sorry, we couldn't locate the video you're looking for. It's possible that the video is set to private or has been removed.",
+        code: 403,
       });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({
-      status: "fail",
-      error: "An unexpected error occurred. Please try again later.",
-      code: 500,
+
+      const error = new Error(err);
+      error.httpStatusCode = 403;
+      return next(error);
     });
-    const err = new Error(error);
-    err.httpStatusCode = 500;
-    return next(err);
-  }
 };
